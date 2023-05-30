@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+  surgerate:
+    build: ./
+    container_name: order-cinema-ticket
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:17080:8080"
+    networks:
+      - order-cinema-ticket-network
+    depends_on:
+      - order-cinema-ticket-db
+
+  surgerate-db:
+    image: postgres:14
+    container_name: order-cinema-ticket-db
+    restart: unless-stopped
+    ports:
+      - "2008:5432"
+    environment:
+      POSTGRES_DB: cinema
+      POSTGRES_USER: cinema
+      POSTGRES_PASSWORD: 123456
+    networks:
+      - order-cinema-ticket-network
+
+# Services on the same network can communicate with each other.
+networks:
+  order-cinema-ticket-network:
+    driver: bridge

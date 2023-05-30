@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: 'server url'
+    username: 'db user name'
+    password: 'db password'
+  flyway:
+    locations:
+      - classpath:db/migration/schema
+      - classpath:db/migration/data
+  jpa:
+    show-sql: false
+    generate-ddl: off
+    hibernate.ddl-auto: none
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        jdbc.batch_size: 20
+        order_inserts: true
+        order_updates: true
+        format_sql: false
+        show_sql: false
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+  data:
+    rest:
+      base-path: /api
+
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    doc-expansion: none
+    path: /swagger-ui
+
+file:
+  upload-dir: ./uploads
