@@ -1,6 +1,6 @@
 version: '3.5'
 services:
-  surgerate:
+  order-cinema-ticket:
     build: ./
     container_name: order-cinema-ticket
     restart: unless-stopped
@@ -9,11 +9,11 @@ services:
     networks:
       - order-cinema-ticket-network
     depends_on:
-      - order-cinema-ticket-db
+      - cinema-db
 
-  surgerate-db:
+  cinema-db:
     image: postgres:14
-    container_name: order-cinema-ticket-db
+    container_name: cinema-db
     restart: unless-stopped
     ports:
       - "2008:5432"
