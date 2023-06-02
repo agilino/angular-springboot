@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigInteger;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -21,9 +19,18 @@ public class Time {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private UUID id;
+    @Column
     private LocalDateTime from;
+    @Column
     private LocalDateTime to;
+    @Column
     private Long price;
-    @Column(name = "move_id")
-    private UUID moveId;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id", insertable = false, updatable = false)
+    private Movie movie;
+
+    @OneToOne
+    @JoinColumn(name = "time_id", insertable = false, updatable = false)
+    private Time time;
 }

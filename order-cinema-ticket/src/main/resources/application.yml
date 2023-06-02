@@ -1,15 +1,16 @@
 server:
-  port: 8081
+  port: 8088
 
 spring:
   datasource:
-    url: 'server url'
-    username: 'db user name'
-    password: 'db password'
+    url: jdbc:postgresql://localhost:2008/cinema
+    username: cinema
+    password: 123456
   flyway:
+    baselineOnMigrate: true
     locations:
-      - classpath:db/migration/schema
-      - classpath:db/migration/data
+      - classpath:migration/schema
+      - classpath:migration/data
   jpa:
     show-sql: false
     generate-ddl: off
@@ -35,8 +36,11 @@ spring:
       base-path: /api
 
 springdoc:
+  api-docs:
+    enabled: true
   swagger-ui:
-    tags-sorter: alpha
+    enabled: true
+    tagsSorter: alpha
     doc-expansion: none
     path: /swagger-ui
 

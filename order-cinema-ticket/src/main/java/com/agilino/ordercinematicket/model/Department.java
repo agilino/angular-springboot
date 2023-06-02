@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +19,11 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private UUID id;
-
+    @Column
     private String name;
+
+    @OneToMany
+    @JoinColumn(name = "department_id", insertable = false, updatable = false)
+    private List<Chair> chairs;
 
 }

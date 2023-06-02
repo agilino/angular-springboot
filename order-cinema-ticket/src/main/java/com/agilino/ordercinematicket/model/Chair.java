@@ -1,11 +1,10 @@
 package com.agilino.ordercinematicket.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -19,8 +18,15 @@ public class Chair {
     @Id
     private UUID id;
 
-    @Column(name = "department_id")
-    private UUID departmentId;
-
+    @Column
     private String number;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", insertable = false, updatable = false)
+    private Department department;
+
+    @ManyToMany(mappedBy = "chairs")
+    @EqualsAndHashCode.Exclude
+    private Set<Ticket> tickets;
+
 }
