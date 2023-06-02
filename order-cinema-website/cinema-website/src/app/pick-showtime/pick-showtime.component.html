@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-8 mx-auto mb-2 mt-4">
+      <div class="date-group btn-group btn-group-lg d-flex justify-content-between" role="group" aria-label="Large button group">
+        <a *ngFor="let item of dateMock" [class.active]="item.day === 'Th 2'" class="btn btn-outline-secondary text-muted px-3 py-2 date-btn">
+          {{item.date}} <br/>
+          <span class="small text-muted">{{item.day}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-between">
+    <div *ngFor="let movieMock of movieMockList" class="movie-card d-flex flex-col mx-auto col-8 mt-4">
+      <div class="d-flex flex-row">
+        <div>
+          <img [src]="movieMock.bannerUrl" class="banner-picture" alt="movie-banner">
+        </div>
+        <div class="info ms-4">
+          <div class="title fw-bold fs-5">{{movieMock.title}}</div>
+          <div class="title text-muted mt-1">{{movieMock.titleEng}}</div>
+          <div class="type mt-1 fw-bold">{{movieMock.type}}</div>
+          <div class="showtimes mt-2 d-flex flex-row">
+              <a [class.overtime]="time=='9:00'" *ngFor="let time of movieMock.showtimes" class="btn btn-sm btn-showtime btn-outline-dark ms-1 p-2" href="">
+                {{time}}
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
