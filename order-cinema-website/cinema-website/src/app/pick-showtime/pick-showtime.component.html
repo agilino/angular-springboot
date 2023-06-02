@@ -20,7 +20,7 @@
           <div class="title text-muted mt-1">{{movieMock.titleEng}}</div>
           <div class="type mt-1 fw-bold">{{movieMock.type}}</div>
           <div class="showtimes mt-2 d-flex flex-row">
-              <a [class.overtime]="time=='9:00'" *ngFor="let time of movieMock.showtimes" class="btn btn-sm btn-showtime btn-outline-dark ms-1 p-2" href="">
+              <a [class.overtime]="time=='9:00'" *ngFor="let time of movieMock.showtimes" class="btn btn-sm btn-showtime btn-outline-dark me-1 p-2" href="">
                 {{time}}
               </a>
           </div>
