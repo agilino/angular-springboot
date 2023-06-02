@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8081
 
 spring:
   datasource:
@@ -7,12 +7,11 @@ spring:
     username: cinema
     password: 123456
   flyway:
-    baselineOnMigrate: true
     locations:
-      - classpath:migration/schema
-      - classpath:migration/data
+      - classpath:db/migration/schema
+      - classpath:db/migration/data
   jpa:
-    show-sql: false
+    show-sql: true
     generate-ddl: off
     hibernate.ddl-auto: none
     hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
@@ -22,8 +21,8 @@ spring:
         jdbc.batch_size: 20
         order_inserts: true
         order_updates: true
-        format_sql: false
-        show_sql: false
+        format_sql: true
+        show_sql: true
     naming:
       physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   servlet:
@@ -31,16 +30,11 @@ spring:
       max-file-size: 30MB
       max-request-size: 30MB
 
-  data:
-    rest:
-      base-path: /api
+  data.rest.base-path: /api
 
 springdoc:
-  api-docs:
-    enabled: true
   swagger-ui:
-    enabled: true
-    tagsSorter: alpha
+    tags-sorter: alpha
     doc-expansion: none
     path: /swagger-ui
 
