@@ -1,0 +1,24 @@
+
+<div class="movies d-flex" [style]="'background-image: url(../../assets/images/' + selectMovie?.imageUrl + ');'">
+
+  <div class="content">
+    <div class="info">
+      <h5>{{ selectMovie?.subTitle }}</h5>
+      <h2>{{ selectMovie?.title }}</h2>
+      <h5>{{ selectMovie?.description }}</h5>
+    </div>
+
+    <div class="slider">
+      <app-movie-card *ngFor="let item of movies"
+        [description]="item.description"
+        [title]="item.title"
+        [subTitle]="item.subTitle"
+        [imageUrl]="item.imageUrl"
+        (click)="this.selectMovie = item">
+      </app-movie-card>
+    </div>
+  </div>
+
+
+
+</div>
