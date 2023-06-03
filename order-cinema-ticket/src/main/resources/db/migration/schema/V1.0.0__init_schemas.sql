@@ -1,6 +1,7 @@
 create table movie (
     id  uuid not null,
     title varchar(255) null,
+    image_url varchar(255) null,
     description character varying null,
     constraint movie_pk primary key (id)
 );
