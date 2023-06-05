@@ -7,13 +7,15 @@ import { PickShowtimeComponent } from './pick-showtime/pick-showtime.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VietNamDatePipe } from './pipes/date-pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     PickShowtimeComponent,
     MoviesComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    VietNamDatePipe
   ],
   imports: [
     BrowserModule,

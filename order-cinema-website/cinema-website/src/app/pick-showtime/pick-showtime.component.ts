@@ -6,41 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./pick-showtime.component.scss']
 })
 export class PickShowtimeComponent {
-  selectedDay = {
-    day: "Th 2",
-    date: "20/10",
+  selectedDay: any;
+  selectedCity : any;
+  dateMock = [] as Date[];
+
+
+initDate(){
+  for(let i = 0; i < 7; i++) {
+    this.dateMock.push(new Date(Date.now() + i * 24 * 60 * 60 * 1000))
   }
-  selectedCity = "Cần Thơ"
-  dateMock = [
-    {
-      day: "Th 2",
-      date: "20/10",
-    },
-    {
-      day: "Th 3",
-      date: "21/10",
-    },
-    {
-      day: "Th 4",
-      date: "22/10",
-    },
-    {
-      day: "Th 5",
-      date: "23/10",
-    },
-    {
-      day: "Th 6",
-      date: "24/10",
-    },
-    {
-      day: "Th 7",
-      date: "25/10",
-    },
-    {
-      day: "CN",
-      date: "26/10",
-    },
-  ]
+}
 
   movieMockList = [
     {
@@ -69,8 +44,15 @@ export class PickShowtimeComponent {
   ]
 
   city = ["Cần Thơ", "Đà Nẵng", "TP. Hồ Chí Minh"]
+
+  constructor() {
+    this.initDate();
+    this.selectedCity = this.city[0];
+    this.selectedDay = this.dateMock[0];
+   }
+
   selectDay(item: any){
-    if(this.selectedDay.date!= item.date){
+    if(this.selectedDay.date!= item){
       this.selectedDay = item;
     }
   }

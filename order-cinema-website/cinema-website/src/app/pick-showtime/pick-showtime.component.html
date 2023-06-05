@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-12 col-lg-8 mx-auto mb-2 mt-4">
       <div class="date-group btn-group btn-group-lg d-flex justify-content-between" role="group" aria-label="Large button group">
-        <a (click)="selectDay(item)" *ngFor="let item of dateMock" [class.active]="item.date===selectedDay.date" class="btn btn-outline-secondary text-muted px-3 py-2 date-btn">
-          {{item.date}} <br/>
-          <span class="small text-muted">{{item.day}}</span>
+        <a (click)="selectDay(item)" *ngFor="let item of dateMock" [class.active]="item===selectedDay" class="btn btn-outline-secondary text-muted px-3 py-2 date-btn">
+          {{item | date:'dd/MM'}} <br/>
+          <span class="small text-muted">{{item | date: 'EEE' | VietNamDatePipe}}</span>
         </a>
       </div>
     </div>
