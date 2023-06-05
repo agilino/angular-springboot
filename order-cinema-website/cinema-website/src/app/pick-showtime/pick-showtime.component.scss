@@ -47,5 +47,22 @@
     background-color: rgb(240, 240, 240) !important;
     border: 0px !important;
     color: rgb(205, 205, 205) !important;
+    padding: 2rem ;
   }
+}
+
+.department{
+  color: #3A609C;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.department-selected{
+  background-color: #E3EBF7;
+}
+
+.text-gray{
+  color: #374151;
 }
