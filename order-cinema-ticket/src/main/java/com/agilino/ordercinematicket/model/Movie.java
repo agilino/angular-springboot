@@ -24,6 +24,9 @@ public class Movie {
     @Column
     private String description;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @OneToMany(mappedBy = "movie")
     private List<Time> times;
 }

@@ -15,4 +15,5 @@ public class MovieDTO {
     private UUID id;
     private String title;
     private String description;
+    private String imageUrl;
 }

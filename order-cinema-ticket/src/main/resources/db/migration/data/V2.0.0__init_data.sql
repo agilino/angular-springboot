@@ -6,11 +6,11 @@ values ('b92948ca-8a35-4717-8058-7e250a49f0c1', 'testuser1', '123456'),
        ('b92948ca-8a35-4717-8058-7e250a49f0c5', 'testuser5', '123456');
 
 insert into movie
-values ('82088c12-012c-11ee-be56-0242ac120001', 'Nhà Bà Nữ (2023)', '', 'Nhà bà Nữ là bộ phim chiếu rạp Việt Nam do Trấn Thành sản xuất và đạo diễn, sau thành công của Bố già. Kể từ ngày công chiếu, bộ phim này đã có doanh thu lên đến 358 tỷ đồng và được đón nhận bởi đông đảo khán giả Việt'),
-       ('82088c12-012c-11ee-be56-0242ac120002', 'Lật Mặt 6', '', 'Lật mặt 6 sẽ thuộc thể loại giật gân, tâm lý pha hành động, hài hước'),
-       ('82088c12-012c-11ee-be56-0242ac120003', 'Người nhện: Du hành vũ trụ nhện', '', 'Miles Morales tái xuất trong phần tiếp theo của bom tấn hoạt hình từng đoạt giải Oscar - Spider-Man: Across the Spider-Verse.'),
-       ('82088c12-012c-11ee-be56-0242ac120004', 'Bo Gia (2021)', '', 'Bo Gia: Directed by Tran Thanh, Ngoc Dang Vu ...'),
-       ('82088c12-012c-11ee-be56-0242ac120005', 'Avatar: Dòng chảy của nước', '', 'Dòng chảy của nước hay còn gọi là Avatar 2, tức phần 2 của Avatar (2009)- một trong những bộ phim hay nhất mọi thời đại. Trong phim, gia đình Na’vi đứng trước mối đe dọa mới từ con người. ');
+values ('82088c12-012c-11ee-be56-0242ac120001', 'Nhà Bà Nữ (2023)', 'https://i.imgur.com/LnsdOYD.jpg', 'Nhà bà Nữ là bộ phim chiếu rạp Việt Nam do Trấn Thành sản xuất và đạo diễn, sau thành công của Bố già. Kể từ ngày công chiếu, bộ phim này đã có doanh thu lên đến 358 tỷ đồng và được đón nhận bởi đông đảo khán giả Việt'),
+       ('82088c12-012c-11ee-be56-0242ac120002', 'Lật Mặt 6', 'https://i.imgur.com/q4nD4Rr.jpg', 'Lật mặt 6 sẽ thuộc thể loại giật gân, tâm lý pha hành động, hài hước'),
+       ('82088c12-012c-11ee-be56-0242ac120003', 'Người nhện: Du hành vũ trụ nhện', 'https://i.imgur.com/2FAZG86.jpg', 'Miles Morales tái xuất trong phần tiếp theo của bom tấn hoạt hình từng đoạt giải Oscar - Spider-Man: Across the Spider-Verse.'),
+       ('82088c12-012c-11ee-be56-0242ac120004', 'Bo Gia (2021)', 'https://i.imgur.com/6JVdJok.jpg', 'Bo Gia: Directed by Tran Thanh, Ngoc Dang Vu ...'),
+       ('82088c12-012c-11ee-be56-0242ac120005', 'Avatar: Dòng chảy của nước', 'https://i.imgur.com/1mxjIva.jpg', 'Dòng chảy của nước hay còn gọi là Avatar 2, tức phần 2 của Avatar (2009)- một trong những bộ phim hay nhất mọi thời đại. Trong phim, gia đình Na’vi đứng trước mối đe dọa mới từ con người. ');
 
 insert into department
 values ('8ee37fc1-a1a4-45fe-a83f-f374f099a2c1', 'Phòng 1'),
