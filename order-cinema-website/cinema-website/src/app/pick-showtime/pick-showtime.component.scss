@@ -1,7 +1,15 @@
-.wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.picking-slot{
+  background-image: url('../../assets/images/photo-1547235001-d703406d3f17.webp');
+  background-size: cover;
+  height: 100dvh;
+  width: 100dvw;
+  padding-bottom: 2rem;
+  backdrop-filter: blur(8px);
+  background-color: transparent;
+  overflow-y: auto;
+
+.container{
+  padding-top: 10vh;
 }
 
 .text-muted{
@@ -10,59 +18,80 @@
 
 .date-group{
   .active{
-    background-color: #C7D6EC !important;
+    background-color: rgba(199, 214, 236, .6) !important;
   }
 }
 
 .date-btn{
-  background-color: EDF2F9 !important;
+  background-color: rgba(255, 255, 255, .6) !important;
 }
 
 .btn-outline-secondary{
-  background-color: #EDF2F9 !important;
-  border-color: #EDF2F9 !important;
+  background-color: rgba(255, 255, 255, .6) !important;
+  border-color: rgba(255, 255, 255, .6) !important;
 }
 
 .btn-outline-secondary:hover{
-  background-color: #C7D6EC !important;
+  background-color: rgba(199, 214, 236, .6) !important;
+}
+
+.btn-group{
+  border: 0px !important;
 }
 
 .movie-card{
-  border: 1px solid #EDF2F9;
+  // background-color: transparent;
+  // backdrop-filter: blur(15px);
+  background-color: rgba(255, 255, 255, .7);
+  //border: 1px solid rgba(255, 255, 255, .6);
   border-radius: 10px;
-  padding: 8px;
+  padding: 12px;
 }
 
 .movie-infor{
   border-radius: 10px;
 }
 
-.banner-picture{
-  border-radius: 10px;
-}
-
 .showtimes{
   .overtime{
-    cursor: not-allowed;
+    pointer-events: none;
     background-color: rgb(240, 240, 240) !important;
     border: 0px !important;
-    color: rgb(205, 205, 205) !important;
-    padding: 2rem ;
+    color: gray !important;
+  }
+
+  .btn-showtime{
+    color: #374151;
+    border-radius: 32px;
+    backdrop-filter: blur(20px);
+  }
+
+  .btn-outline-dark{
+    border-radius: 32px;
+    backdrop-filter: blur(20px);
+    border-color: gray;
+  }
+
+  .btn-outline-dark:hover{
+    background-color: rgb(189, 189, 189) !important;
   }
 }
 
-.department{
-  color: #3A609C;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 
-.department-selected{
-  background-color: #E3EBF7;
-}
+// .department{
+//   color: #3A609C;
+//   cursor: pointer;
+//   -webkit-user-select: none;
+//   -ms-user-select: none;
+//   user-select: none;
+// }
+
+// .department-selected{
+//   background-color: #E3EBF7;
+// }
 
 .text-gray{
   color: #374151;
+}
+
 }
