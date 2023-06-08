@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../services/rest.service';
-
-
-export interface Movie {
-  title: string;
-  subTitle: string;
-  imageUrl: string;
-  description: string;
-}
+import { Movie } from '../models/movie';
 
 @Component({
   selector: 'app-movies',
@@ -29,6 +22,8 @@ export class MoviesComponent implements OnInit {
     this.restService.getMovieList().subscribe((result) => {
       this.movies = result as Movie[];
       this.selectMovie = this.movies[0];
+      console.log(this.movies);
+
     });
   }
 }

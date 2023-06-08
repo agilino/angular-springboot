@@ -12,9 +12,9 @@
 
   .slider {
     height: 300px;
-    width: 50vw;
+    width: 60vw;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     column-gap: 16px;
   }
 
