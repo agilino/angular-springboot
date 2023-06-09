@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div class="seats-wrapper">
+    <div *ngFor="let row of seats">
+      <div class="d-flex flex-column justify-content-center align-item-center m-3" *ngFor="let seat of row"
+        [class.booked]="seat.status === 'BOOKED'"
+        (click)="seat.status == 'free' ? seat.status = 'SELECTED': seat.status = 'free'">
+        <img class="mx-auto" [src]="getImageUrl(seat.status)" width="50px">
+        <div class="text-center">{{ seat.row + seat.column }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="seats-info">
+    <h2>{{ 'Movie name: ' }}</h2>
+    <h2>{{ 'Time: ' }}</h2>
+    <h2>{{ 'Screen: ' }}</h2>
+    <h2>{{ 'Seats: ' }} <span class="me-2" *ngFor="let item of selectedSeats()">{{ item | seat }}</span></h2>
+    <h2>{{ 'Amount: ' }} </h2>
+    <button (click)="handleSelectSeats()" class="booking-button">Đặt vé</button>
+  </div>
+</div>
+
+
+

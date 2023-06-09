@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PickShowtimeComponent } from './pick-showtime/pick-showtime.component';
 import { MoviesComponent } from './movies/movies.component';
+import { SeatsComponent } from './seats/seats.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,8 @@ const routes: Routes = [
     component: MoviesComponent,
   },
    { path: 'ticketing/:movieId', component: PickShowtimeComponent },
+   { path: 'seats', component: SeatsComponent },
+
 ];
 
 @NgModule({

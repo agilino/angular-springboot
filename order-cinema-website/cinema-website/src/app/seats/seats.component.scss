@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+
+  .seats-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: repeat(9, 100px);
+
+    .booked {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  .seats-info {
+    .booking-button {
+      background-color: transparent;
+      border-color: #f44336;
+      color: #f44336;
+      padding: 12px 48px;
+      border-radius: 32px;
+      font-size: 1.2rem;
+    }
+
+  }
+}
+
+

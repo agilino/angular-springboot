@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VietNamDatePipe } from './pipes/date-pipe';
 import { HeaderComponent } from './header/header.component';
 import { RestService } from './services/rest.service';
+import { SeatsComponent } from './seats/seats.component';
+import { SeatPipe } from './pipes/seat-pipe.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { RestService } from './services/rest.service';
     MoviesComponent,
     MovieCardComponent,
     VietNamDatePipe,
-    HeaderComponent
+    HeaderComponent,
+    SeatsComponent,
+    SeatPipe
   ],
   imports: [
     BrowserModule,
