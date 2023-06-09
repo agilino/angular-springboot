@@ -2,12 +2,12 @@
   background-image: url(../../assets/images/marek-piwnicki-_kY6w94o-f0-unsplash.jpg);
   background-size: cover;
   height: 100dvh;
-  width: 100dvw;
+  width: 100%;
 
   .content {
     display: flex;
     gap: 32px;
-    padding: 40% 32px 0;
+    padding: 30% 32px 0;
   }
 
   .slider {
@@ -19,10 +19,22 @@
   }
 
   .info {
+    display: flex;
+    flex-direction: column;
     max-width: 20vw;
     bottom: 200px;
     height: 350px;
     color: white;
     margin-left: 100px;
+  }
+
+  .pick-ticket{
+    justify-self: end;
+    background-color: transparent !important;
+    border-color: white !important;
+    color: white !important;
+    padding: 12px 48px;
+    border-radius: 32px;
+    font-size: 1.2rem;
   }
 }

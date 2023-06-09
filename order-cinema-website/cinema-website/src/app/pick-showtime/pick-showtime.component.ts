@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { RestService } from '../services/rest.service';
+import { Movie } from '../models/movie';
+import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-pick-showtime',
@@ -7,8 +10,21 @@ import { Component } from '@angular/core';
 })
 export class PickShowtimeComponent {
   selectedDay: any;
-  selectedCity : any;
   dateMock = [] as Date[];
+  movieId = "";
+  selectedMovie: Movie | undefined;
+
+  constructor(private restService: RestService, private activatedRoute: ActivatedRoute) {
+    this.initDate();
+    this.selectedDay = this.dateMock[0];
+    this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
+  }
+
+  ngOnInit(): void {
+    this.restService.getMovieById(this.movieId).subscribe((result) => {
+      this.selectedMovie = result as Movie;
+    });
+  }
 
 
 initDate(){
@@ -54,22 +70,9 @@ isOverTime(time: string): boolean {
     }
   ]
 
-  city = ["Cần Thơ", "Đà Nẵng", "TP. Hồ Chí Minh"]
-
-  constructor() {
-    this.initDate();
-    this.selectedCity = this.city[0];
-    this.selectedDay = this.dateMock[0];
-   }
-
   selectDay(item: any){
     if(this.selectedDay.date!= item){
       this.selectedDay = item;
-    }
-  }
-  selectCity(item: string){
-    if(this.selectedCity!=item){
-      this.selectedCity = item;
     }
   }
 }

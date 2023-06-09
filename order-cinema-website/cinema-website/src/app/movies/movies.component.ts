@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../services/rest.service';
 import { Movie } from '../models/movie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -11,7 +12,7 @@ export class MoviesComponent implements OnInit {
   selectMovie: Movie | undefined;
   movies: Movie[] = [];
 
-  constructor(private restService: RestService) {
+  constructor(private restService: RestService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,8 +23,11 @@ export class MoviesComponent implements OnInit {
     this.restService.getMovieList().subscribe((result) => {
       this.movies = result as Movie[];
       this.selectMovie = this.movies[0];
-      console.log(this.movies);
-
     });
+  }
+
+  handleSelectMovie(movie: Movie | undefined) {
+    this.restService.setSelectMovie(movie);
+    this.router.navigate(['/ticketing', movie?.id]);
   }
 }

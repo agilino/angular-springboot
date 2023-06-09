@@ -24,7 +24,7 @@
             margin-left: 10px;
             color: #f7f7f7;
             cursor: pointer;
-            min-width: 150px;
+            padding: 0 24px;
             &:hover{
                 color: rgba($color: #f7f7f7, $alpha: 0.6);
             }
@@ -32,6 +32,9 @@
               text-decoration: none;
               color: #f7f7f7;
             }
+        }
+        .nav-item:nth-child(1){
+            margin-left: -12px;
         }
     }
 

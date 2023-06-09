@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: MoviesComponent,
   },
-   { path: 'ticketing', component: PickShowtimeComponent },
+   { path: 'ticketing/:movieId', component: PickShowtimeComponent },
 ];
 
 @NgModule({
