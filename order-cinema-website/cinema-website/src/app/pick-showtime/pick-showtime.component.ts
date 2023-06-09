@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RestService } from '../services/rest.service';
 import { Movie } from '../models/movie';
 import { ActivatedRoute, RouterLinkActive } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { ShowTime, Time } from '../models/time';
 
 @Component({
   selector: 'app-pick-showtime',
@@ -14,7 +16,7 @@ export class PickShowtimeComponent {
   movieId = "";
   selectedMovie: Movie | undefined;
 
-  constructor(private restService: RestService, private activatedRoute: ActivatedRoute) {
+  constructor(private restService: RestService, private activatedRoute: ActivatedRoute, private datePipe: DatePipe) {
     this.initDate();
     this.selectedDay = this.dateMock[0];
     this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
@@ -22,14 +24,16 @@ export class PickShowtimeComponent {
 
   ngOnInit(): void {
     this.restService.getMovieById(this.movieId).subscribe((result) => {
-      this.selectedMovie = result as Movie;
+      this.selectedMovie = result[0] as Movie;
+      console.log(result);
+      this.restService.getTimeByMovieId(this.movieId).subscribe((result) => {
+        console.log(this.mapTimeToShowTime(result as Time[]));
+      });
     });
   }
-
-
 initDate(){
   for(let i = 0; i < 7; i++) {
-    this.dateMock.push(new Date(Date.parse("2021-08-21") + i * 24 * 60 * 60 * 1000))
+    this.dateMock.push(new Date(Date.parse("2021-08-01") + i * 24 * 60 * 60 * 1000))
   }
 }
 
@@ -74,5 +78,17 @@ isOverTime(time: string): boolean {
     if(this.selectedDay.date!= item){
       this.selectedDay = item;
     }
+  }
+
+  toShowTimeFormat(time: Time): ShowTime{
+    return {
+      from: this.datePipe.transform(time.from, 'HH:mm') as string,
+      day: this.datePipe.transform(time.from, 'dd/MM') as string,
+      department: time.department
+    }
+  }
+
+  mapTimeToShowTime(times: Time[]): ShowTime[]{
+    return times.map((item) => this.toShowTimeFormat(item));
   }
 }

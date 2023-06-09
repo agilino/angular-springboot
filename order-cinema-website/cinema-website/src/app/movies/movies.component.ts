@@ -27,7 +27,6 @@ export class MoviesComponent implements OnInit {
   }
 
   handleSelectMovie(movie: Movie | undefined) {
-    this.restService.setSelectMovie(movie);
     this.router.navigate(['/ticketing', movie?.id]);
   }
 }

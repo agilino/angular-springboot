@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { RestService } from './services/rest.service';
 import { SeatsComponent } from './seats/seats.component';
 import { SeatPipe } from './pipes/seat-pipe.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SeatPipe } from './pipes/seat-pipe.component';
     HttpClientModule
   ],
   providers: [
-    RestService
+    RestService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
