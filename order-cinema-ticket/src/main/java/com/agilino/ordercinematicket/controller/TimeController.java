@@ -1,8 +1,8 @@
 package com.agilino.ordercinematicket.controller;
 
-
 import com.agilino.ordercinematicket.dto.MovieDTO;
-import com.agilino.ordercinematicket.service.MovieService;
+import com.agilino.ordercinematicket.dto.TimeDTO;
+import com.agilino.ordercinematicket.service.TimeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.annotation.Nullable;
@@ -17,17 +17,16 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/api/movies")
+@RequestMapping(value = "/api/times")
 @RequiredArgsConstructor
-public class MovieController {
-
-    private final MovieService movieService;
+public class TimeController {
+    private final TimeService timeService;
 
     @GetMapping
-    @Operation(summary = "Find list of movies or get specific movie by Id")
+    @Operation(summary = "Find list of times belong to movie")
     @Parameter(name = "id", description = "id of movie need to be found")
-    public ResponseEntity<List<MovieDTO>> getMovies(@RequestParam("id") @Nullable UUID id) {
-        var movies = movieService.getMovies(id);
-        return ResponseEntity.ok(movies);
+    public ResponseEntity<List<TimeDTO>> getTimes(@RequestParam("id") @Nullable UUID id) {
+        var times = timeService.getTimes(id);
+        return ResponseEntity.ok(times);
     }
 }

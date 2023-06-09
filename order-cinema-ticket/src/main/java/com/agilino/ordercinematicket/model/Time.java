@@ -27,10 +27,15 @@ public class Time {
     private Long price;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id", insertable = false, updatable = false)
+    @JoinColumn(name = "move_id", insertable = false, updatable = false)
     private Movie movie;
 
-    @OneToOne
-    @JoinColumn(name = "time_id", insertable = false, updatable = false)
-    private Time time;
+    @ManyToOne
+    @JoinColumn(name = "department_id", insertable = false, updatable = false)
+    private Department department;
+
+    //TODO check relationship of this one
+//    @OneToOne
+//    @JoinColumn(name = "time_id", insertable = false, updatable = false)
+//    private Time time;
 }
