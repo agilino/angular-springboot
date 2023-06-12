@@ -8,16 +8,6 @@ import { Time } from '../models/time';
 })
 export class RestService {
 
-  selectMovie : Movie | undefined;
-
-  setSelectMovie(movie: Movie | undefined) {
-    this.selectMovie = movie;
-  }
-
-  getSelectMovie() {
-    return this.selectMovie;
-  }
-
   constructor(private http: HttpClient) { }
 
   getMovieList() {

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RestService } from '../services/rest.service';
 import { Movie } from '../models/movie';
-import { ActivatedRoute, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { ShowTime, Time } from '../models/time';
+import { GroupedShowTime, ShowTime, ShowTimeInGroup, Time } from '../models/time';
 
 @Component({
   selector: 'app-pick-showtime',
@@ -15,6 +15,11 @@ export class PickShowtimeComponent {
   dateMock = [] as Date[];
   movieId = "";
   selectedMovie: Movie | undefined;
+  showTimes = [] as ShowTime[];
+  selectedShowTime = [] as ShowTime[];
+  timeByDepartment: any;
+  displayShowTime: any;
+
 
   constructor(private restService: RestService, private activatedRoute: ActivatedRoute, private datePipe: DatePipe) {
     this.initDate();
@@ -25,63 +30,68 @@ export class PickShowtimeComponent {
   ngOnInit(): void {
     this.restService.getMovieById(this.movieId).subscribe((result) => {
       this.selectedMovie = result[0] as Movie;
-      console.log(result);
       this.restService.getTimeByMovieId(this.movieId).subscribe((result) => {
-        console.log(this.mapTimeToShowTime(result as Time[]));
+        this.showTimes = this.mapTimeToShowTime(result as Time[]);
+        this.timeByDepartment = this.groupShowtimeByDepartmentAndDay(this.showTimes).sort();
+        this.displayShowTime = this.timeByDepartment.filter((time: any) => time.day === this.datePipe.transform(this.selectedDay, 'dd/MM'));
       });
     });
   }
-initDate(){
-  for(let i = 0; i < 7; i++) {
-    this.dateMock.push(new Date(Date.parse("2021-08-01") + i * 24 * 60 * 60 * 1000))
-  }
-}
 
-isOverTime(time: string): boolean {
-  let isOverMinutes = parseInt(time.split(":")[1]) < new Date().getMinutes();
-  let isOverHours = parseInt(time.split(":")[0]) < new Date().getHours();
-
-  if(parseInt(time.split(":")[0]) === new Date().getHours()){
-    return isOverMinutes;
-  } else {
-    return isOverHours;
-  }
-}
-
-  movieMockList = [
-    {
-      bannerUrl: "https://cdn.moveek.com/storage/media/cache/mini/643cd05155dc9009010254.jpeg",
-      title: "Lật Mặt 6: Tấm vé định mệnh",
-      titleEng: "Face Off 6: The Ticket Of Destiny · NC16 · 2h12' ",
-      type:"2D Lồng Tiếng",
-      showtimes: [ "9:00", "16:00", "18:00","20:00", "22:00", "24:00"],
-      department: "CGV Sense City",
-    },
-    {
-      bannerUrl: "https://cdn.moveek.com/storage/media/cache/mini/643cd05155dc9009010254.jpeg",
-      title: "Lật Mặt 6: Tấm vé định mệnh",
-      titleEng: "Face Off 6: The Ticket Of Destiny · NC16 · 2h12' ",
-      type:"2D Lồng Tiếng",
-      showtimes: [ "20:00", "22:00", "24:00" ],
-      department: "CGV Hùng Vương",
-    },{
-      bannerUrl: "https://cdn.moveek.com/storage/media/cache/mini/643cd05155dc9009010254.jpeg",
-      title: "Lật Mặt 6: Tấm vé định mệnh",
-      titleEng: "Face Off 6: The Ticket Of Destiny · NC16 · 2h12' ",
-      type:"2D Lồng Tiếng",
-      showtimes: [ "20:00", "22:45", "24:00" ],
-      department: "CGV Xuân Khánh",
+  initDate(){
+    for(let i = 0; i < 7; i++) {
+      this.dateMock.push(new Date(Date.parse("2021-08-01") + i * 24 * 60 * 60 * 1000))
     }
-  ]
+  }
+
+  isOverTime(time: string): boolean {
+    let isOverMinutes = parseInt(time.split(":")[1]) < new Date().getMinutes();
+    let isOverHours = parseInt(time.split(":")[0]) < new Date().getHours();
+
+    if(parseInt(time.split(":")[0]) === new Date().getHours()){
+      return isOverMinutes;
+    } else {
+      return isOverHours;
+    }
+  }
 
   selectDay(item: any){
     if(this.selectedDay.date!= item){
       this.selectedDay = item;
+      this.displayShowTime = this.timeByDepartment.filter((time: any) => time.day === this.datePipe.transform(this.selectedDay, 'dd/MM'));
     }
+  }
+
+  groupShowtimeByDepartmentAndDay(times: ShowTime[]): GroupedShowTime[] {
+    return times.reduce((groups, time) => {
+      const id = `${time.department.id}_${time.day}`;
+      const index = groups.findIndex(group => group.id === id);
+
+      if (index < 0) {
+        groups.push({
+          id,
+          day: time.day,
+          department: time.department,
+          showtimes: [this.buildShowTimeInGroup(time.id, time.from)]
+        });
+      } else {
+        groups[index].showtimes.push(this.buildShowTimeInGroup(time.id, time.from));
+      }
+
+      return groups;
+    }, [] as GroupedShowTime[]);
+  }
+
+  buildShowTimeInGroup(id: string, from: string){
+    return {
+      id,
+      from
+    } as ShowTimeInGroup;
   }
 
   toShowTimeFormat(time: Time): ShowTime{
     return {
+      id: time.id,
       from: this.datePipe.transform(time.from, 'HH:mm') as string,
       day: this.datePipe.transform(time.from, 'dd/MM') as string,
       department: time.department

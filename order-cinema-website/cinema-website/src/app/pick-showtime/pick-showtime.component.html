@@ -19,21 +19,26 @@
       </div>
     </div>
     <div class="row d-flex justify-content-between">
-      <div *ngFor="let movieMock of movieMockList" class="movie-card d-flex flex-col mx-auto col-8 mt-2">
-        <div class="">
-          <div class="mb-2 fs-5 fw-bold text-gray">{{movieMock.department}}</div>
-          <div class="d-flex flex-row">
-            <div class="info ms-4">
-              <div class="type mt-1 fw-bold text-gray">{{movieMock.type}}</div>
-              <div class="showtimes mt-2 d-flex flex-row">
-                <a [class.overtime]="isOverTime(time)" *ngFor="let time of movieMock.showtimes"
-                  class="btn btn-sm btn-showtime btn-outline-dark me-1 p-2" href="#">
-                  {{time}}
-                </a>
+      <div *ngIf="displayShowTime">
+        <div *ngFor="let time of displayShowTime" class="movie-card d-flex flex-col mx-auto col-8 mt-2">
+          <div class="">
+            <div class="mb-2 fs-5 fw-bold text-gray">{{time.department.name}}</div>
+            <div class="d-flex flex-row">
+              <div class="info ms-4">
+                <div class="type mt-1 fw-bold text-gray">2D Lồng tiếng</div>
+                <div class="showtimes mt-2 d-flex flex-row">
+                    <a [class.overtime]="isOverTime(time.from)"*ngFor="let time of time.showtimes"
+                      class="btn btn-sm btn-showtime btn-outline-dark me-1 p-2" href="#">
+                      {{time.from}}
+                    </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div *ngIf="displayShowTime?.length===0" class="movie-card col-8 mt-2 mx-auto">
+        <span class="mx-auto mt-1 fw-bold text-gray">Hiện tại chưa có lịch chiếu cho ngày này</span>
       </div>
     </div>
   </div>
