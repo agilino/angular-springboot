@@ -1,0 +1,107 @@
+$red: #e84c3d;
+$grey: #ecedef;
+$black: #343434;
+
+.bill-viewer{
+  background-image: url('../../assets/images/photo-1547235001-d703406d3f17.webp');
+  background-size: cover;
+  height: 100dvh;
+  width: 100dvw;
+  padding-bottom: 2rem;
+  backdrop-filter: blur(8px);
+  background-color: transparent;
+  overflow-y: auto;
+
+  .cardWrap {
+    width: 44em;
+    margin: 3em auto;
+    color: #fff;
+    font-family: sans-serif;
+  }
+
+  .card {
+    background: linear-gradient(to bottom, $red 0%, $red 26%, $grey 26%, $grey 100%);
+    height: 16em;
+    float: left;
+    position: relative;
+    padding: 1em;
+    margin-top: 100px;
+  }
+
+  .cardLeft {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    width: 24em;
+  }
+
+  .cardRight {
+    width: 12em;
+    border-left: .18em dashed #fff;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: .9em;
+      height: .9em;
+      background: #fff;
+      border-radius: 50%;
+      left: -.5em;
+    }
+    &:before {
+      top: -.4em;
+    }
+    &:after {
+    bottom: -.4em;
+    }
+  }
+
+    .title {
+      font-family: 'Grandstander', cursive;
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: default;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding-bottom: 4px;
+    }
+
+  .ticket-info{
+    font-family: 'Grandstander', cursive;
+  }
+
+  .barcode {
+    margin-left: 34px;
+    height: 2em;
+    width: 0;
+    box-shadow: 1px 0 0 1px $black,
+    5px 0 0 1px $black,
+    10px 0 0 1px $black,
+    11px 0 0 1px $black,
+    15px 0 0 1px $black,
+    18px 0 0 1px $black,
+    22px 0 0 1px $black,
+    23px 0 0 1px $black,
+    26px 0 0 1px $black,
+    30px 0 0 1px $black,
+    35px 0 0 1px $black,
+    37px 0 0 1px $black,
+    41px 0 0 1px $black,
+    44px 0 0 1px $black,
+    47px 0 0 1px $black,
+    51px 0 0 1px $black,
+    56px 0 0 1px $black,
+    59px 0 0 1px $black,
+    64px 0 0 1px $black,
+    68px 0 0 1px $black,
+    72px 0 0 1px $black,
+    74px 0 0 1px $black,
+    77px 0 0 1px $black,
+    81px 0 0 1px $black;
+  }
+
+}

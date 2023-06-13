@@ -13,6 +13,7 @@ import { RestService } from './services/rest.service';
 import { SeatsComponent } from './seats/seats.component';
 import { SeatPipe } from './pipes/seat-pipe.component';
 import { DatePipe } from '@angular/common';
+import { BillComponent } from './bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DatePipe } from '@angular/common';
     VietNamDatePipe,
     HeaderComponent,
     SeatsComponent,
-    SeatPipe
+    SeatPipe,
+    BillComponent
   ],
   imports: [
     BrowserModule,
