@@ -6,9 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/chairs")
@@ -18,8 +20,10 @@ public class ChairController {
     private final ChairService chairService;
 
     @GetMapping
-    public ResponseEntity<List<ChairDTO>> getChairs() {
-        var chairs = chairService.getChairs();
+    public ResponseEntity<List<ChairDTO>> getChairs(
+            @RequestParam(name = "departmentId") UUID departmentId,
+            @RequestParam(name = "timeId") UUID timeId ) {
+        var chairs = chairService.getChairs(departmentId, timeId);
         return ResponseEntity.ok(chairs);
     }
 }
