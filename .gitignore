@@ -1,1 +1,6 @@
 order-cinema-ticket/bin/
+
+order-cinema-ticket/.gradle/*
+order-cinema-ticket/.idea/*
+order-cinema-ticket/build/*
+.idea/*

@@ -22,4 +22,6 @@ public interface AppMapper {
     TicketDTO toDto(Ticket source);
     TimeDTO toDto (Time source);
 
+    Ticket toEntity(TicketDTO source);
+
 }
