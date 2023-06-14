@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./seats.component.scss']
 })
 export class SeatsComponent {
-  seats: { row: string; column: number; status: string; }[][] = [[]];
+  seats: { row: number; column: string; status: string; }[][] = [[]];
 
   constructor() {
-    const rows = ['A', 'B', 'C', 'D', 'E', 'F'];
-    const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const columns = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const rows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     for (let i = 0; i < rows.length; i++) {
       this.seats[i] = [];
