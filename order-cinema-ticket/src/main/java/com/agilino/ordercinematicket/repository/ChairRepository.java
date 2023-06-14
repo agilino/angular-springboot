@@ -14,8 +14,9 @@ public interface ChairRepository extends JpaRepository<Chair, UUID> {
 
     @Query(value =
             "select c from Chair c " +
-            "inner join Department d on d.id = c.department.id and c.department.id = :departmentId " +
-            "inner join Time t on t.department.id  =c.department.id  and t.id =:timeId"
+            "inner join Department d on d.id = c.department.id " +
+            "inner join Time t on t.department.id  = c.department.id " +
+            "where d.id= :departmentId and t.id = :timeId"
           )
     List<Chair> findByDepartmentId(UUID departmentId, UUID timeId);
 }

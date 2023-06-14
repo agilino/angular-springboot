@@ -4,10 +4,7 @@ import com.agilino.ordercinematicket.dto.ChairDTO;
 import com.agilino.ordercinematicket.service.ChairService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,10 +16,10 @@ public class ChairController {
 
     private final ChairService chairService;
 
-    @GetMapping
+    @GetMapping(value = "/{departmentId}/{timeId}")
     public ResponseEntity<List<ChairDTO>> getChairs(
-            @RequestParam(name = "departmentId") UUID departmentId,
-            @RequestParam(name = "timeId") UUID timeId ) {
+            @PathVariable(name = "departmentId") UUID departmentId,
+            @PathVariable(name = "timeId") UUID timeId ) {
         var chairs = chairService.getChairs(departmentId, timeId);
         return ResponseEntity.ok(chairs);
     }
