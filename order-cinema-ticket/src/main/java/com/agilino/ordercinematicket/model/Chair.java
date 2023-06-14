@@ -21,7 +21,7 @@ public class Chair {
     @Column
     private String number;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id", insertable = false, updatable = false)
     private Department department;
 

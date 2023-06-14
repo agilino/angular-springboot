@@ -10,11 +10,14 @@ import com.agilino.ordercinematicket.model.Movie;
 import com.agilino.ordercinematicket.model.Ticket;
 import com.agilino.ordercinematicket.model.Time;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface AppMapper {
 
     MovieDTO toDto(Movie source);
+
+    @Mapping(source = "department.id", target = "departmentId")
     ChairDTO toDto(Chair source);
     TicketDTO toDto(Ticket source);
     TimeDTO toDto (Time source);
