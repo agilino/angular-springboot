@@ -1,23 +1,45 @@
+<app-header></app-header>
 <div class="wrapper">
-  <div class="seats-wrapper">
-    <div *ngFor="let row of seats">
-      <div class="d-flex flex-column justify-content-center align-item-center m-3" *ngFor="let seat of row"
-        [class.booked]="seat.status === 'BOOKED'"
-        (click)="seat.status == 'free' ? seat.status = 'SELECTED': seat.status = 'free'">
-        <img class="mx-auto" [src]="getImageUrl(seat.status)" width="50px">
-        <div class="text-center">{{ seat.row + seat.column }}</div>
+  <div class="d-flex justify-content-center w-100 gap-3">
+    <div class="mt-auto">
+      <div class="screen">Màn hình</div>
+      <div class="seats-wrapper">
+        <div *ngFor="let row of seats">
+          <div class="d-flex flex-column justify-content-center align-item-center m-3" *ngFor="let seat of row"
+            [class.booked]="seat.status === 'BOOKED'"
+            (click)="seat.status == 'free' ? seat.status = 'SELECTED': seat.status = 'free'">
+            <img class="mx-auto" [src]="getImageUrl(seat.status)" width="50px">
+            <div class="text-center">{{ seat.row + seat.column }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="seats-info">
+      <div class="chair-guide mb-3 p-2">
+        <!-- <h5>Thông tin hướng dẫn</h5> -->
+        <div class=""><img class="mx-auto" [src]="getImageUrl('BOOKED')" width="28px">&nbsp; Ghế đã đặt </div>
+        <div class="mt-1"><img class="mx-auto" [src]="getImageUrl('free')" width="28px">&nbsp;  Ghế trống </div>
+        <div class="mt-1"><img class="mx-auto" [src]="getImageUrl('SELECTED')" width="28px">&nbsp;  Ghế đã chọn </div>
+       </div>
+      <div class="movie-info p-2">
+        <h5>{{ 'Phim: Lật mặt 6: Tấm vé định mệnh' }}</h5>
+        <h5>{{ 'Thời lượng: 120 phút' }}</h5>
+        <h5>{{ 'Phòng chiếu: Phòng 1' }}</h5>
+        <h5 class="d-flex flex-wrap">{{ 'Ghế: ' }} <span class="me-2" *ngFor="let item of selectedSeats()">{{ item | seat }}</span></h5>
+        <!-- <button (click)="handleSelectSeats()" class="booking-button">Đặt vé</button> -->
       </div>
     </div>
   </div>
-  <div class="seats-info">
-    <h2>{{ 'Movie name: ' }}</h2>
-    <h2>{{ 'Time: ' }}</h2>
-    <h2>{{ 'Screen: ' }}</h2>
-    <h2>{{ 'Seats: ' }} <span class="me-2" *ngFor="let item of selectedSeats()">{{ item | seat }}</span></h2>
-    <h2>{{ 'Amount: ' }} </h2>
-    <button (click)="handleSelectSeats()" class="booking-button">Đặt vé</button>
+  <div class="bottom-side d-flex justify-content-around align-item-center">
+    <div class="me-auto p-3">
+      <button (click)="handleSelectSeats()" class="btn btn-outline-danger btn-lg px-5 rounded-pill">Trở về</button>
+    </div>
+    <div *ngIf="selectedSeats().length>0" class="text-center my-auto">
+      <div class="total-text me-auto">Tổng cộng</div>
+      <div class="fs-4">{{selectedSeats().length* 80000 | currency:"VND"}}</div>
+    </div>
+    <div class="ms-auto p-3">
+      <button (click)="handleSelectSeats()" class="btn btn-primary btn-lg px-5 rounded-pill">Đặt vé</button>
+    </div>
   </div>
 </div>
-
-
-

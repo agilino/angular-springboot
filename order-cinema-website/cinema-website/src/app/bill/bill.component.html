@@ -1,34 +1,45 @@
-<div class="bill-viewer">
-  <app-header></app-header>
-  <div class="container">
-    <div class="cardWrap">
-      <div class="card cardLeft">
-          <div class="title" title="Người nhện: Du hành vũ trụ nhện">
-            Lật mặt 6: Tấm vé định mệnh
-          </div>
-          <div class="ticket-info mt-auto d-flex flex-column justify-content-around align-items-start">
-            <div class="p-1">
-              Thời gian: 01/08/2021
-            </div>
-            <div class="p-1">
-              Rạp: Phòng 1
-            </div>
-            <div class="p-1">
-              Thời gian: 128 phút
-            </div>
-            <div class="p-1">
-              Ghế: E1, D2, F4
-            </div>
-            <div class="p-1">
-              Thành tiền: 210.000đ
-            </div>
-          </div>
+<app-header></app-header>
+<div class="wrapper">
+    <div class="inform-wrapper">
+      <div class="fs-4 d-flex flex-column justify-content-center text-center mt-4">
+        <img class="mx-auto" src="../../assets/images/check.svg" alt="completed" width="64px">
+        <span>Bạn đã đặt vé thành công!</span>
       </div>
-
-      <div class="card cardRight d-flex justify-content-center">
-        <div class="barcode mt-auto"></div>
+      <div class="cardWrap">
+        <div class="card cardLeft">
+            <div class="title" title="Người nhện: Du hành vũ trụ nhện">
+              Lật mặt 6: Tấm vé định mệnh
+            </div>
+            <div class="ticket-info mt-auto d-flex flex-column justify-content-around align-items-start">
+              <div class="p-1">
+                <span class="fw-bolder">Phòng Chiếu:</span>
+                 Phòng 1
+              </div>
+              <div class="p-1">
+                <span class="fw-bolder">Thời Gian:</span>
+                 01/08/2021
+              </div>
+              <div class="p-1">
+                <span class="fw-bolder">Thời Lượng:</span>
+                128 phút
+              </div>
+              <div class="p-1">
+               <span class="fw-bolder"> Ghế:</span>
+                 E1, D2, F4
+              </div>
+              <div class="p-1">
+                <span class="fw-bolder">Thành Tiền:</span>
+                 210.000đ
+              </div>
+            </div>
+        </div>
+        <div class="card cardRight d-flex justify-content-center">
+          <img class="pt-1 mx-auto mt-5" src="../../assets/images/paid-stamp.png" alt="paid_pic" width="120px">
+          <div class="barcode mt-4"></div>
+        </div>
       </div>
-
+      <div class="mx-auto py-3">
+        <button class="btn btn-primary btn-lg px-5 rounded-pill" routerLink="/">Trở về trang chủ</button>
+      </div>
     </div>
-  </div>
 </div>

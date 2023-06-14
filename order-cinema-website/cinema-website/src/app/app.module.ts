@@ -14,6 +14,7 @@ import { SeatsComponent } from './seats/seats.component';
 import { SeatPipe } from './pipes/seat-pipe.component';
 import { DatePipe } from '@angular/common';
 import { BillComponent } from './bill/bill.component';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { BillComponent } from './bill/bill.component';
     HeaderComponent,
     SeatsComponent,
     SeatPipe,
-    BillComponent
+    BillComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +36,8 @@ import { BillComponent } from './bill/bill.component';
   ],
   providers: [
     RestService,
-    DatePipe
+    DatePipe,
+    CurrencyPipe,
   ],
   bootstrap: [AppComponent]
 })

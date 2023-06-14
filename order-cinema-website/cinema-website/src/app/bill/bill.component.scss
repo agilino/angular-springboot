@@ -2,19 +2,33 @@ $red: #e84c3d;
 $grey: #ecedef;
 $black: #343434;
 
-.bill-viewer{
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 100vh;
+  padding-top: 8vh;
   background-image: url('../../assets/images/photo-1547235001-d703406d3f17.webp');
   background-size: cover;
-  height: 100dvh;
-  width: 100dvw;
-  padding-bottom: 2rem;
-  backdrop-filter: blur(8px);
-  background-color: transparent;
-  overflow-y: auto;
+
+  .inform-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+    background-color: rgba($color: #ffffff, $alpha: 0.9);
+    border-radius: 12px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.2);
+    padding: 8px 12px;
+  }
+
 
   .cardWrap {
-    width: 44em;
-    margin: 3em auto;
+    padding: 0 32px;
+    margin: 2em auto;
     color: #fff;
     font-family: sans-serif;
   }
@@ -25,7 +39,6 @@ $black: #343434;
     float: left;
     position: relative;
     padding: 1em;
-    margin-top: 100px;
   }
 
   .cardLeft {
@@ -68,6 +81,7 @@ $black: #343434;
       font-weight: 600;
       font-size: 1.2rem;
       padding-bottom: 4px;
+      color: #ecedef;
     }
 
   .ticket-info{
@@ -75,7 +89,7 @@ $black: #343434;
   }
 
   .barcode {
-    margin-left: 34px;
+    margin-left: 38px;
     height: 2em;
     width: 0;
     box-shadow: 1px 0 0 1px $black,
