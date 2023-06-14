@@ -1,4 +1,4 @@
-package com.agilino.ordercinematicket.dto;
+package com.agilino.ordercinematicket.dto.chair;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

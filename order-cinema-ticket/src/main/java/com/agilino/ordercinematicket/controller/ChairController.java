@@ -1,6 +1,7 @@
 package com.agilino.ordercinematicket.controller;
 
-import com.agilino.ordercinematicket.dto.ChairDTO;
+import com.agilino.ordercinematicket.dto.chair.ChairDTO;
+import com.agilino.ordercinematicket.dto.chair.ChairResponseDTO;
 import com.agilino.ordercinematicket.service.ChairService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,11 @@ public class ChairController {
     private final ChairService chairService;
 
     @GetMapping(value = "/{departmentId}/{timeId}")
-    public ResponseEntity<List<ChairDTO>> getChairs(
+    public ResponseEntity<List<ChairResponseDTO>> getChairs(
             @PathVariable(name = "departmentId") UUID departmentId,
             @PathVariable(name = "timeId") UUID timeId ) {
         var chairs = chairService.getChairs(departmentId, timeId);
         return ResponseEntity.ok(chairs);
     }
 }
+

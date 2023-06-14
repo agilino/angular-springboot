@@ -1,9 +1,14 @@
 package com.agilino.ordercinematicket.service;
 
 
-import com.agilino.ordercinematicket.dto.ChairDTO;
+import com.agilino.ordercinematicket.dto.TicketDTO;
+import com.agilino.ordercinematicket.dto.chair.ChairDTO;
+import com.agilino.ordercinematicket.dto.chair.ChairResponseDTO;
+import com.agilino.ordercinematicket.enums.ChairStatus;
 import com.agilino.ordercinematicket.mapper.AppMapper;
+import com.agilino.ordercinematicket.model.Ticket;
 import com.agilino.ordercinematicket.repository.ChairRepository;
+import com.agilino.ordercinematicket.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +21,13 @@ import java.util.UUID;
 public class ChairService {
     private final AppMapper appMapper;
     private final ChairRepository chairRepository;
-
-    public List<ChairDTO> getChairs(UUID departmentId, UUID timeId) {
+    public List<ChairResponseDTO> getChairs(UUID departmentId, UUID timeId) {
+        List<ChairResponseDTO> chairs = new ArrayList<>();
         if (departmentId != null && timeId != null) {
-            return chairRepository.findByDepartmentId(departmentId, timeId).stream().map(appMapper::toDto).toList();
+            chairs = chairRepository.findByDepartmentId(departmentId, timeId).stream()
+                    .map(appMapper::toDto).peek(item -> item.setStatus(ChairStatus.FREE))
+                    .toList();
         }
-        return new ArrayList<>();
+        return chairs;
     }
 }
