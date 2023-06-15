@@ -6,11 +6,11 @@ values ('b92948ca-8a35-4717-8058-7e250a49f0c1', 'testuser1', '123456'),
        ('b92948ca-8a35-4717-8058-7e250a49f0c5', 'testuser5', '123456');
 
 insert into movie
-values ('82088c12-012c-11ee-be56-0242ac120001', 'Nhà Bà Nữ (2023)', 'https://i.imgur.com/LnsdOYD.jpg', 'Nhà bà Nữ là bộ phim chiếu rạp Việt Nam do Trấn Thành sản xuất và đạo diễn, sau thành công của Bố già. Kể từ ngày công chiếu, bộ phim này đã có doanh thu lên đến 358 tỷ đồng và được đón nhận bởi đông đảo khán giả Việt'),
-       ('82088c12-012c-11ee-be56-0242ac120002', 'Lật Mặt 6', 'https://i.imgur.com/q4nD4Rr.jpg', 'Lật mặt 6 sẽ thuộc thể loại giật gân, tâm lý pha hành động, hài hước'),
-       ('82088c12-012c-11ee-be56-0242ac120003', 'Người nhện: Du hành vũ trụ nhện', 'https://i.imgur.com/2FAZG86.jpg', 'Miles Morales tái xuất trong phần tiếp theo của bom tấn hoạt hình từng đoạt giải Oscar - Spider-Man: Across the Spider-Verse.'),
-       ('82088c12-012c-11ee-be56-0242ac120004', 'Bo Gia (2021)', 'https://i.imgur.com/6JVdJok.jpg', 'Bo Gia: Directed by Tran Thanh, Ngoc Dang Vu ...'),
-       ('82088c12-012c-11ee-be56-0242ac120005', 'Avatar: Dòng chảy của nước', 'https://i.imgur.com/1mxjIva.jpg', 'Dòng chảy của nước hay còn gọi là Avatar 2, tức phần 2 của Avatar (2009)- một trong những bộ phim hay nhất mọi thời đại. Trong phim, gia đình Na’vi đứng trước mối đe dọa mới từ con người. ');
+values ('82088c12-012c-11ee-be56-0242ac120001', 'Avatar: Dòng chảy của nước', 'https://imgur.com/vPwVIZW.jpg', 'Dòng chảy của nước hay còn gọi là Avatar 2, tức phần 2 của Avatar (2009)- một trong những bộ phim hay nhất mọi thời đại. Trong phim, gia đình Na’vi đứng trước mối đe dọa mới từ con người.'),
+       ('82088c12-012c-11ee-be56-0242ac120002', 'Transformers: Quái thú trỗi dậy', 'https://imgur.com/4E6PIch.jpg', 'Bộ phim hành động khoa học viễn tưởng ra mắt năm 2023 của do Steven Caple Jr. đạo diễn. Dựa trên dòng đồ chơi Transformers của Hasbro và chịu ảnh hưởng chủ yếu từ cốt truyện Beast Wars.'),
+       ('82088c12-012c-11ee-be56-0242ac120003', 'Người nhện: Du hành vũ trụ nhện', 'https://imgur.com/k0vQY9T.jpg', 'Miles Morales tái xuất trong phần tiếp theo của bom tấn hoạt hình từng đoạt giải Oscar - Spider-Man: Across the Spider-Verse.'),
+       ('82088c12-012c-11ee-be56-0242ac120004', 'Thor: Tình yêu và sấm sét', 'https://imgur.com/TJxOSVh.jpg', 'Thor: Tình yêu và sấm sét là phim điện ảnh Mỹ thuộc thể loại siêu anh hùng, dựa trên nhân vật cùng tên của Marvel Comics. Đây là phần tiếp theo của Thor: Tận thế Ragnarok.'),
+       ('82088c12-012c-11ee-be56-0242ac120005', 'Quá nhanh quá nguy hiểm 10', 'https://imgur.com/ht8ORM7.jpg', 'Fast & Furious X là một bộ phim điện ảnh Mỹ thuộc thể loại hành động công chiếu vào năm 2023 do Louis Leterrier làm đạo diễn, với phần kịch bản đi Justin Lin và Dan Mazeau chắp bút.');
 
 insert into department
 values ('8ee37fc1-a1a4-45fe-a83f-f374f099a2c1', 'Phòng 1'),
