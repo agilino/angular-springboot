@@ -6,10 +6,7 @@ import com.agilino.ordercinematicket.dto.ticket.TicketDTO;
 import com.agilino.ordercinematicket.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<List<TicketDTO>> createTicket(List<TicketCreateDTO> tickets) {
+    public ResponseEntity<List<TicketDTO>> createTicket(@RequestBody List<TicketCreateDTO> tickets) {
         var ticket = ticketService.createTicket(tickets);
         return ResponseEntity.ok(ticket);
     }

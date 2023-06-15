@@ -25,12 +25,12 @@ create table time(
     constraint time_movie_id_department_id_key unique ("from", move_id, department_id)
 );
 
-create table "user"(
+create table account(
     id              uuid not null,
     name            varchar(255) null,
     email           varchar(255) null,
     password        varchar(255) null,
-    constraint user_pk primary key (id)
+    constraint account_pk primary key (id)
 );
 
 create table chair(
@@ -55,11 +55,11 @@ create table ticket(
     id        uuid not null,
     time_id   uuid not null,
     chair_id  uuid not null,
-    user_id   uuid not null,
+    account_id   uuid not null,
     created_on timestamp null,
     constraint ticket_pk primary key (id),
     constraint ticket_time_fk foreign key (time_id) references time(id),
     constraint ticket_chair_fk foreign key (chair_id) references chair(id),
-    constraint ticket_user_fk foreign key (user_id) references "user"(id),
-    constraint ticket_time_id_chair_id_user_id_key unique (time_id, chair_id, user_id)
+    constraint ticket_account_fk foreign key (account_id) references "account"(id),
+    constraint ticket_time_id_chair_id_account_id_key unique (time_id, chair_id, account_id)
 );

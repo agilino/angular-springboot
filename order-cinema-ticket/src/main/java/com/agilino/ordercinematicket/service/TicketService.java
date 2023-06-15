@@ -1,13 +1,14 @@
 package com.agilino.ordercinematicket.service;
 
 import com.agilino.ordercinematicket.controller.exception.NotFoundException;
-import com.agilino.ordercinematicket.dto.chair.ChairCreateDTO;
 import com.agilino.ordercinematicket.dto.ticket.TicketCreateDTO;
 import com.agilino.ordercinematicket.dto.ticket.TicketDTO;
-import com.agilino.ordercinematicket.enums.ChairStatus;
 import com.agilino.ordercinematicket.mapper.AppMapper;
 import com.agilino.ordercinematicket.model.Ticket;
+import com.agilino.ordercinematicket.repository.ChairRepository;
 import com.agilino.ordercinematicket.repository.TicketRepository;
+import com.agilino.ordercinematicket.repository.TimeRepository;
+import com.agilino.ordercinematicket.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,6 @@ import java.util.List;
 public class TicketService {
     private final AppMapper appMapper;
     private final TicketRepository ticketRepository;
-    private final ChairService chairService;
-    private final TimeService timeService;
-
     public List<TicketDTO> getTickets() {
         return ticketRepository.findAll().stream().findAny().stream().map(appMapper::toDto).toList();
     }
@@ -39,9 +37,6 @@ public class TicketService {
     }
 
     private void validateTicket(TicketCreateDTO ticket) {
-        var chair = chairService.getChair(ticket.getChairId());
-        if (chair.getStatus().equals(ChairStatus.BOOKED)) {
-            throw new NotFoundException("Chair is occupied");
-        }
+
     }
 }

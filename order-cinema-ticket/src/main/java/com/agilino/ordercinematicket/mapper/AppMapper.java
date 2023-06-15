@@ -6,23 +6,39 @@ import com.agilino.ordercinematicket.dto.TimeDTO;
 import com.agilino.ordercinematicket.dto.chair.ChairDTO;
 import com.agilino.ordercinematicket.dto.ticket.TicketCreateDTO;
 import com.agilino.ordercinematicket.dto.ticket.TicketDTO;
-import com.agilino.ordercinematicket.model.Chair;
-import com.agilino.ordercinematicket.model.Movie;
-import com.agilino.ordercinematicket.model.Ticket;
-import com.agilino.ordercinematicket.model.Time;
+import com.agilino.ordercinematicket.model.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
-@Mapper(componentModel = "spring")
+import java.util.UUID;
+
+@Mapper(
+        componentModel = "spring",
+        uses = {
+                ReferenceMapper.class,
+        }
+)
 public interface AppMapper {
 
     MovieDTO toDto(Movie source);
 
     @Mapping(source = "department.id", target = "departmentId")
     ChairDTO toDto(Chair source);
+
     TicketDTO toDto(Ticket source);
-    TimeDTO toDto (Time source);
-    Ticket toEntity(TicketDTO source);
+
+    TimeDTO toDto(Time source);
+
+    @Mapping(source = "timeId", target = "time", qualifiedByName = "mapTime")
+    @Mapping(source = "chairId", target = "chair", qualifiedByName = "mapChair")
+    @Mapping(source = "accountId", target = "account",  qualifiedByName = "mapAccount")
     Ticket toEntity(TicketCreateDTO source);
 
+    @Named("mapTime")
+    Time mapTime(UUID value);
+    @Named("mapAccount")
+    Account mapAccount(UUID value);
+    @Named("mapChair")
+    Chair mapChair(UUID value);
 }

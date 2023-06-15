@@ -15,4 +15,6 @@ public class TicketCreateDTO{
     private UUID timeId;
     @NonNull
     private UUID chairId;
+    @NonNull
+    private UUID accountId;
 }

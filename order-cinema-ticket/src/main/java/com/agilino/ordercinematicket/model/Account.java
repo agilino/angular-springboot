@@ -12,10 +12,10 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "user")
+@Table(name = "account")
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private UUID id;
@@ -26,6 +26,6 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "account")
     private List<Ticket> tickets;
 }

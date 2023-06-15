@@ -1,11 +1,12 @@
 package com.agilino.ordercinematicket.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -15,27 +16,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "ticket")
 public class Ticket {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue
     private UUID id;
-    @Column(name = "time_id")
-    private UUID timeId;
-
-    @Column(name = "user_id")
-    private UUID userId;
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "time_id", insertable = true, updatable = false)
+    private Time time;
     @Column(name = "created_on")
     private LocalDateTime createdOn;
-
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
+    @JoinColumn(name = "account_id", insertable = true, updatable = false)
+    private Account account;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @JoinTable(name = "ticket_chair",
-            joinColumns = @JoinColumn(name = "ticket_id"),
-            inverseJoinColumns = @JoinColumn(name = "chair_id")
-    )
-    private Set<Chair> chairs;
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "chair_id", insertable = true, updatable = false)
+    private Chair chair;
 }

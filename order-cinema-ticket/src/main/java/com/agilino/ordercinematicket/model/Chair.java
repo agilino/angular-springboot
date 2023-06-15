@@ -25,8 +25,7 @@ public class Chair {
     @JoinColumn(name = "department_id", insertable = false, updatable = false)
     private Department department;
 
-    @ManyToMany(mappedBy = "chairs")
-    @EqualsAndHashCode.Exclude
-    private Set<Ticket> tickets;
+    @OneToOne(mappedBy = "chair")
+    private Ticket ticket;
 
 }

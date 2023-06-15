@@ -1,4 +1,4 @@
-insert into "user"
+insert into account
 values ('b92948ca-8a35-4717-8058-7e250a49f0c1', 'testuser1', '123456'),
        ('b92948ca-8a35-4717-8058-7e250a49f0c2', 'testuser2', '123456'),
        ('b92948ca-8a35-4717-8058-7e250a49f0c3', 'testuser3', '123456'),
