@@ -1,4 +1,4 @@
-package com.agilino.ordercinematicket.dto;
+package com.agilino.ordercinematicket.dto.ticket;
 
 
 import lombok.AllArgsConstructor;
@@ -13,10 +13,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TicketDTO {
+public class TicketDTO extends TicketCreateDTO {
     private UUID id;
-    private UUID timeId;
-    private UUID chairId;
-    private UUID userId;
     private LocalDateTime createdOn;
 }

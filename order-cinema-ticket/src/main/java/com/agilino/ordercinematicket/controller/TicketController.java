@@ -1,7 +1,8 @@
 package com.agilino.ordercinematicket.controller;
 
 
-import com.agilino.ordercinematicket.dto.TicketDTO;
+import com.agilino.ordercinematicket.dto.ticket.TicketCreateDTO;
+import com.agilino.ordercinematicket.dto.ticket.TicketDTO;
 import com.agilino.ordercinematicket.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,8 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<TicketDTO> createTicket(TicketDTO ticketDTO) {
-        var ticket = ticketService.createTicket(ticketDTO);
+    public ResponseEntity<List<TicketDTO>> createTicket(List<TicketCreateDTO> tickets) {
+        var ticket = ticketService.createTicket(tickets);
         return ResponseEntity.ok(ticket);
     }
 }
