@@ -38,6 +38,7 @@ public class ChairService {
 
         Set<UUID> chairsExisting = ticketRepository.findAllTicketByChairs(chairs.stream().map(ChairDTO::getId).toList())
                 .stream()
+                .filter(item -> item.getTime().getId().equals(timeId))
                 .map(item -> item.getChair().getId())
                 .collect(Collectors.toSet());
 
