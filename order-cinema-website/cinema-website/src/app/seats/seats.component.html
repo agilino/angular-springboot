@@ -38,7 +38,7 @@
         </div>
         <div *ngIf="selectedSeats().length > 0">
           <span class="info-title">Ghế:&nbsp;</span>
-          <span class="info-description text-success" *ngFor="let item of selectedSeats() index as idx">{{ idx===selectedSeats().length-1 ? item.number + '' : item.number + ', ' }}</span>
+          <span class="info-description text-success" *ngFor="let item of selectedSeats() index as idx">{{ idx===selectedSeats().length-1 ? item.number : item.number + ', ' }}</span>
         </div>
         <div *ngIf="selectedSeats().length <= 0">
           <span class="info-title">Ghế:&nbsp;</span>

@@ -8,16 +8,17 @@
       <div class="cardWrap">
         <div class="card cardLeft">
             <div class="title" title="Người nhện: Du hành vũ trụ nhện">
-              Lật mặt 6: Tấm vé định mệnh
+              {{selectedMovie.title}}
             </div>
             <div class="ticket-info mt-auto d-flex flex-column justify-content-around align-items-start">
               <div class="p-1">
-                <span class="fw-bolder">Phòng Chiếu:</span>
-                 Phòng 1
+                <span class="fw-bolder">Phòng Chiếu:&nbsp;</span>
+                 <span>{{selectedTime.department.name}}</span>
               </div>
               <div class="p-1">
-                <span class="fw-bolder">Thời Gian:</span>
-                 01/08/2021
+                <span class="fw-bolder">Suất chiếu:&nbsp;</span>
+                <span>{{ selectedTime.from | date: 'HH:mm'  + ' - ' }}</span>
+                <span>{{ selectedTime.from | date: 'dd/MM/yyyy' }}</span>
               </div>
               <div class="p-1">
                 <span class="fw-bolder">Thời Lượng:</span>
@@ -25,11 +26,11 @@
               </div>
               <div class="p-1">
                <span class="fw-bolder"> Ghế:</span>
-                 E1, D2, F4
+                 <span *ngFor="let chair of selectedChair index as idx "> {{ idx === selectedChair.length-1 ? chair.number : chair.number + ", " }}</span>
               </div>
               <div class="p-1">
                 <span class="fw-bolder">Thành Tiền:</span>
-                 210.000đ
+                <span> {{selectedChair.length * 80000 | currency:"VND" }} </span>
               </div>
             </div>
         </div>

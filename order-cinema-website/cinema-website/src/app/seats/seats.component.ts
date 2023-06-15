@@ -106,8 +106,11 @@ export class SeatsComponent implements OnInit {
       for (let j = 0; j < this.seatList?.length; j++) {
         if (this.seatList[j].status === 'SELECTED') {
           selectedSeats.push(this.seatList[j]);
+          sessionStorage.setItem('listChair', JSON.stringify(selectedSeats));
         }
       }
+
+    sessionStorage.setItem('listChair', JSON.stringify(selectedSeats))
     return selectedSeats;
   }
 }
