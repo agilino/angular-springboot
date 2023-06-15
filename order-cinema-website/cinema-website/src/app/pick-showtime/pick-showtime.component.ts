@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RestService } from '../services/rest.service';
 import { Movie } from '../models/movie';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { GroupedShowTime, ShowTime, ShowTimeInGroup, Time } from '../models/time';
 
@@ -15,13 +15,14 @@ export class PickShowtimeComponent {
   dateMock = [] as Date[];
   movieId = "";
   selectedMovie: Movie | undefined;
+  rawTimeData!: Time[];
   showTimes = [] as ShowTime[];
   selectedShowTime = [] as ShowTime[];
-  timeByDepartment: any;
-  displayShowTime: any;
+  timeByDepartment!: GroupedShowTime[];
+  displayShowTime!: GroupedShowTime[];
 
 
-  constructor(private restService: RestService, private activatedRoute: ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private restService: RestService, private activatedRoute: ActivatedRoute, private datePipe: DatePipe, private router: Router) {
     this.initDate();
     this.selectedDay = this.dateMock[0];
     this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
@@ -30,11 +31,12 @@ export class PickShowtimeComponent {
   ngOnInit(): void {
     this.restService.getMovieById(this.movieId).subscribe((result) => {
       this.selectedMovie = result[0] as Movie;
-      this.restService.getTimeByMovieId(this.movieId).subscribe((result) => {
-        this.showTimes = this.mapTimeToShowTime(result as Time[]);
-        this.timeByDepartment = this.groupShowtimeByDepartmentAndDay(this.showTimes).sort();
-        this.displayShowTime = this.timeByDepartment.filter((time: any) => time.day === this.datePipe.transform(this.selectedDay, 'dd/MM'));
-      });
+    });
+    this.restService.getTimeByMovieId(this.movieId).subscribe((result) => {
+      this.rawTimeData = result;
+      this.showTimes = this.mapTimeToShowTime(this.rawTimeData);
+      this.timeByDepartment = this.groupShowtimeByDepartmentAndDay(this.showTimes).sort();
+      this.displayShowTime = this.timeByDepartment.filter((time: any) => time.day === this.datePipe.transform(this.selectedDay, 'dd/MM'));
     });
   }
 
@@ -100,5 +102,13 @@ export class PickShowtimeComponent {
 
   mapTimeToShowTime(times: Time[]): ShowTime[]{
     return times.map((item) => this.toShowTimeFormat(item));
+  }
+
+  chooseTime(time: ShowTimeInGroup){
+    const selectedTime = this.rawTimeData.filter(item => {
+      return time.id === item.id
+    });
+    sessionStorage.setItem('time', JSON.stringify(selectedTime[0]));
+    this.router.navigate(['/seats', this.movieId]);
   }
 }

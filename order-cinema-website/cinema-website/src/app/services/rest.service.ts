@@ -21,4 +21,16 @@ export class RestService {
   getTimeByMovieId(id: string) {
     return this.http.get<Time[]>('/api/times?id=' + id);
    }
+
+   getChairList(departmentId: string | null, timeId: string | null) {
+    return this.http.get<any>(`api/chairs/${departmentId}/${timeId}`);
+   }
+
+   createTicket(data: any){
+    return this.http.post<any>('/api/tickets', data);
+   }
+
+   getCreateTicket(){
+    return this.http.get<any>('/api/tickets')
+   }
   }

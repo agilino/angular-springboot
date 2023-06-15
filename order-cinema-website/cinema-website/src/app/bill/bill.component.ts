@@ -9,7 +9,10 @@ import { RestService } from '../services/rest.service';
 export class BillComponent implements OnInit{
 
   constructor(private restSevice: RestService) { }
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.restSevice.getMovieList
+  }
 
 
 }
