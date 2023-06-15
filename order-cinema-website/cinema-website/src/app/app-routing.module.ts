@@ -11,8 +11,13 @@ const routes: Routes = [
     component: MoviesComponent,
   },
    { path: 'ticketing/:movieId', component: PickShowtimeComponent },
-   { path: 'seats', component: SeatsComponent },
-   { path: 'bill', component: BillComponent },
+   { path: 'seats/:movieId', component: SeatsComponent },
+   { path: 'bill/:movieId', component: BillComponent },
+   {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
 
 ];
 
