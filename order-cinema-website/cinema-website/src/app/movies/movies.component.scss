@@ -36,5 +36,9 @@
     padding: 12px 48px;
     border-radius: 32px;
     font-size: 1.2rem;
+    transition: transform 180ms ease-in-out;
+    &:hover{
+      transform: scale(1.05);
+    }
   }
 }
