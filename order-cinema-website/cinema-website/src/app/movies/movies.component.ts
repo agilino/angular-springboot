@@ -27,6 +27,7 @@ export class MoviesComponent implements OnInit {
   }
 
   handleSelectMovie(movie: Movie | undefined) {
+    sessionStorage.setItem('movie', JSON.stringify(movie));
     this.router.navigate(['/ticketing', movie?.id]);
   }
 }

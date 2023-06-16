@@ -1,6 +1,6 @@
-<div class="picking-slot" [style]="'background-image: url(' + selectedMovie?.imageUrl + ');'">
+<div class="picking-slot" [style]="'background-image: url(' + selectedMovie.imageUrl + ');'">
   <app-header></app-header>
-  <div class="container">
+  <div *ngIf="selectedMovie && rawTimeData" class="container">
     <div class="row">
       <div class="col-12 col-lg-8 mx-auto mb-2 mt-2">
         <div class="date-group btn-group btn-group-lg d-flex justify-content-between" role="group"
@@ -15,7 +15,7 @@
     </div>
     <div class="row d-flex justify-content-between">
       <div class="d-flex mx-auto col-8 mt-4">
-        <div class="title fw-bold fs-5 text-gray">{{selectedMovie?.title}}</div>
+        <div class="title fw-bold fs-5 text-gray">{{selectedMovie.title}}</div>
       </div>
     </div>
     <div class="row d-flex justify-content-between">
@@ -40,6 +40,16 @@
       </div>
       <div *ngIf="displayShowTime?.length===0" class="movie-card col-8 mt-2 mx-auto">
         <span class="mx-auto mt-1 fw-bold text-gray">Hiện tại chưa có lịch chiếu cho ngày này</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!selectedMovie && !rawTimeData" class="container empty-inform h-100">
+    <div class="d-flex justify-content-between align-item-center">
+      <div class="movie-card d-flex flex-column mx-auto col-6 fs-4  align-item-center">
+        <div class="text-center pt-3">Vui lòng chọn phim trước khi chọn suất chiếu!</div>
+        <div class="mx-auto mt-3 py-3">
+          <button class="btn btn-primary btn-lg px-5 rounded-pill" routerLink="/">Trở về trang chủ</button>
+        </div>
       </div>
     </div>
   </div>

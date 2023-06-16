@@ -1,10 +1,10 @@
-<app-header></app-header>
 <div class="wrapper" [style]="'background-image: url(' + selectedMovie?.imageUrl + ');'">
-  <div class="d-flex justify-content-center w-100 gap-3">
+  <app-header></app-header>
+  <div *ngIf="selectedTime" class="d-flex justify-content-center w-100 h-100 gap-3">
     <div class="mt-auto">
       <div class="screen">Màn hình</div>
       <div class="seats-wrapper">
-          <div class="d-flex flex-column justify-content-center align-item-center m-3" *ngFor="let seat of seatList"
+          <div class="seat d-flex flex-column justify-content-center align-item-center" *ngFor="let seat of seatList"
             [class.booked]="seat.status === 'BOOKED'"
             (click)="seat.status == 'FREE' ? seat.status = 'SELECTED': seat.status = 'FREE'">
             <img class="mx-auto" [src]="getImageUrl(seat.status)" width="50px">
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="bottom-side d-flex justify-content-around align-item-center">
+  <div *ngIf="selectedTime" class="bottom-side">
     <div class="me-auto p-3">
       <button class="btn btn-outline-danger btn-lg px-5 rounded-pill" [routerLink]="['/ticketing', movieId]">Trở về</button>
     </div>
@@ -59,4 +59,10 @@
       <button (click)="handleSelectSeats()" class="btn btn-primary btn-lg px-5 rounded-pill">Đặt vé</button>
     </div>
   </div>
+  <div *ngIf="!selectedTime" class="empty-inform my-auto mx-auto py-3 ">
+    <div class="text-center pt-3 fs-4">Vui lòng chọn suất chiếu trước khi chọn ghế!</div>
+      <div class="mx-auto mt-3 py-3">
+        <button class="btn btn-primary btn-lg px-5 rounded-pill" routerLink="/">Trở về trang chủ</button>
+      </div>
+    </div>
 </div>

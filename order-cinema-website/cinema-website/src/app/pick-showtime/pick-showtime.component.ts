@@ -14,7 +14,7 @@ export class PickShowtimeComponent {
   selectedDay: any;
   dateMock = [] as Date[];
   movieId = "";
-  selectedMovie: Movie | undefined;
+  selectedMovie: Movie = sessionStorage.getItem('movie') ? JSON.parse(sessionStorage.getItem('movie') as string) : undefined;
   rawTimeData!: Time[];
   showTimes = [] as ShowTime[];
   selectedShowTime = [] as ShowTime[];

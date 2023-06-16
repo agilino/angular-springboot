@@ -15,23 +15,14 @@ export class SeatsComponent implements OnInit {
   seats: { row: number; column: string; status: string }[][] = [[]];
   seatList!: Chair[];
   movieId = "";
-  selectedMovie: Movie | undefined;
-  departmentName = sessionStorage.getItem('departmentName');
+  selectedMovie: Movie | undefined = sessionStorage.getItem('movie') ? JSON.parse(sessionStorage.getItem('movie') as string) : undefined;
   selectedTime!: ShowTime;
-
-
 
   constructor(private restService: RestService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
     const timeData = sessionStorage.getItem('time');
     if(timeData){
       this.selectedTime = JSON.parse(timeData);
-    } else {
-      Swal.fire({
-        icon: 'info',
-        title: '<h4>' + ' Vui lòng chọn lại giờ chiếu! ' + '</h4>',
-        confirmButtonColor: '#0D6EFD',
-      });
     }
   }
 
@@ -77,7 +68,7 @@ export class SeatsComponent implements OnInit {
             }
           });
           this.restService.createTicket(submitData).subscribe({
-            next: ()=> {
+            next: (response)=> {
               this.router.navigate(['/bill', this.movieId]);
             },
             error: ()=> {

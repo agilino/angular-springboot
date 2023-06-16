@@ -2,7 +2,7 @@
   background-image: url('../../assets/images/photo-1547235001-d703406d3f17.webp');
   background-size: cover;
   height: 100dvh;
-  width: 100dvw;
+  width: 100%;
   padding-bottom: 2rem;
   backdrop-filter: blur(8px);
   background-color: transparent;
@@ -85,6 +85,11 @@
   border-radius: 32px;
   padding: 8px 12px;
   margin-left: -12px;
+}
+
+.empty-inform{
+  transform: translateX(-50%);
+  transform: translateY(25%);
 }
 
 }

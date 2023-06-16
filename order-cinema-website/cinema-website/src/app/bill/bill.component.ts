@@ -12,18 +12,15 @@ import { ShowTime, Time } from '../models/time';
 })
 export class BillComponent implements OnInit{
 movieId: string;
-selectedMovie!: Movie;
+selectedMovie: Movie = sessionStorage.getItem('movie') ? JSON.parse(sessionStorage.getItem('movie') as string) : undefined;
 listChair!: Chair[];
 selectedTime!: ShowTime;
 selectedChair!: Chair[];
-
-
 
   constructor(private restService: RestService, private activatedRoute: ActivatedRoute) {
     this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
     const timeData = sessionStorage.getItem('time');
     const chairData = sessionStorage.getItem('listChair');
-    console.log(timeData, chairData);
 
     if(timeData && chairData){
       this.selectedTime = JSON.parse(timeData);

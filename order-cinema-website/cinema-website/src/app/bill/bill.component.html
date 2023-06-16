@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="wrapper" [style]="'background-image: url(' + selectedMovie.imageUrl + ');'">
-    <div class="inform-wrapper">
+    <div *ngIf="selectedTime && selectedChair.length > 0" class="inform-wrapper">
       <div class="fs-4 d-flex flex-column justify-content-center text-center mt-4">
         <img class="mx-auto" src="../../assets/images/check.svg" alt="completed" width="64px">
         <span class="mt-2">Bạn đã đặt vé thành công!</span>
@@ -40,6 +40,14 @@
         </div>
       </div>
       <div class="mx-auto py-3">
+        <button class="btn btn-primary btn-lg px-5 rounded-pill" routerLink="/">Trở về trang chủ</button>
+      </div>
+    </div>
+    <div *ngIf="!selectedTime || selectedChair.length <= 0" class="inform-wrapper px-3">
+      <div class="fs-4 d-flex flex-column justify-content-center text-center mt-4">
+        <span class="mt-2">Vui lòng chọn suất chiếu và ghế trước!</span>
+      </div>
+      <div class="mx-auto mt-3 py-3">
         <button class="btn btn-primary btn-lg px-5 rounded-pill" routerLink="/">Trở về trang chủ</button>
       </div>
     </div>
