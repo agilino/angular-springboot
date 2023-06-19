@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  selectMovie: Movie | undefined;
+  selectMovie!: Movie ;
   movies: Movie[] = [];
 
   constructor(private restService: RestService, private router: Router) {
