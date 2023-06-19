@@ -24,12 +24,12 @@
     <div class="slider">
       <!--
         Sử dụng ngFor bên trong component "app-movie-card" được khai báo bên dưới để lặp qua danh sách các phim vừa lấy được trong mảng movies.
-        Truyền các thông tin như:
-        - Tiêu đề phim (title)
-        - Mô tả phim (description)
-        - Link ảnh phim (imageUrl)
-        Thêm sự kiện "click" để thực hiện công việc việc gán phim được chọn vào biến selectMovie
-      Vào bên trong component "app-movie-card" thông qua data-binding ([dataName]=data)
+        - Truyền các thông tin như:
+        + Tiêu đề phim (title)
+        + Mô tả phim (description)
+        + Link ảnh phim (imageUrl)
+        Vào bên trong component "app-movie-card" thông qua data-binding ([dataName] = dataSource)
+        - Thêm sự kiện "click" để thực hiện công việc việc gán phim được chọn (Phim đang hiển thị trong "app-movie-card") vào biến selectMovie
      -->
 
       <app-movie-card>
