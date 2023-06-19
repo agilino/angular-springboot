@@ -17,6 +17,8 @@ export class SeatsComponent implements OnInit {
   movieId = "";
   selectedMovie: Movie | undefined = sessionStorage.getItem('movie') ? JSON.parse(sessionStorage.getItem('movie') as string) : undefined;
   selectedTime!: ShowTime;
+  departmentId!: string;
+  timeId!: string;
 
   constructor(private restService: RestService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
@@ -24,6 +26,8 @@ export class SeatsComponent implements OnInit {
     if(timeData){
       sessionStorage.removeItem('ticketId');
       this.selectedTime = JSON.parse(timeData);
+      this.departmentId = this.selectedTime.department.id;
+      this.timeId = this.selectedTime.id;
     }
   }
 
@@ -35,7 +39,7 @@ export class SeatsComponent implements OnInit {
   }
 
   getChairList(){
-    this.restService.getChairList(this.selectedTime.department.id, this.selectedTime.id)
+    this.restService.getChairList(this.departmentId, this.timeId)
     .subscribe((data: any) => {
       this.seatList = data;
     });
