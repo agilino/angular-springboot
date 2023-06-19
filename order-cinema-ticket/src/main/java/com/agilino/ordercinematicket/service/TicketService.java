@@ -15,14 +15,19 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class TicketService {
     private final AppMapper appMapper;
     private final TicketRepository ticketRepository;
-    public List<TicketDTO> getTickets() {
-        return ticketRepository.findAll().stream().findAny().stream().map(appMapper::toDto).toList();
+    public List<TicketDTO> getTickets(UUID id) {
+        if(Objects.isNull(id)) {
+            return ticketRepository.findAll().stream().findAny().stream().map(appMapper::toDto).toList();
+        }
+        return ticketRepository.findById(id).stream().map(appMapper::toDto).toList();
     }
 
     public List<TicketDTO> createTicket(List<TicketCreateDTO> tickets) {
