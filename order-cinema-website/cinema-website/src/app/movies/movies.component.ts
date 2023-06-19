@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  selectMovie: Movie | undefined; // Phim được chọn
+  selectMovie!: Movie ; // Phim được chọn
   movies: Movie[] = []; //Danh sách các phim
 
   constructor(private restService: RestService, private router: Router) {}
