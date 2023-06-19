@@ -30,7 +30,7 @@ export class RestService {
     return this.http.post<any>('/api/tickets', data);
    }
 
-   getTicket(){
-    return this.http.get<any>('/api/tickets')
+   getTicket(id: string){
+    return this.http.get<any>('/api/tickets?id=' + id);
    }
   }

@@ -16,20 +16,27 @@ selectedMovie: Movie = sessionStorage.getItem('movie') ? JSON.parse(sessionStora
 listChair!: Chair[];
 selectedTime!: ShowTime;
 selectedChair!: Chair[];
+ticketId!: string;
+ticket: any;
 
   constructor(private restService: RestService, private activatedRoute: ActivatedRoute) {
     this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
     const timeData = sessionStorage.getItem('time');
     const chairData = sessionStorage.getItem('listChair');
+    const ticketData = sessionStorage.getItem('ticketId');
 
-    if(timeData && chairData){
+    if(timeData && chairData && ticketData){
       this.selectedTime = JSON.parse(timeData);
       this.selectedChair = JSON.parse(chairData);
+      this.ticketId = ticketData;
    }
   }
   ngOnInit() {
     this.restService.getMovieById(this.movieId).subscribe((result) => {
       this.selectedMovie = result[0] as Movie;
+    });
+    this.restService.getTicket(this.ticketId).subscribe((result) => {
+      this.ticket = result[0];
     });
   }
 }

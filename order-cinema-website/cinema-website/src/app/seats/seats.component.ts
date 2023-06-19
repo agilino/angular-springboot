@@ -22,6 +22,7 @@ export class SeatsComponent implements OnInit {
     this.movieId = this.activatedRoute.snapshot.paramMap.get('movieId') as string;
     const timeData = sessionStorage.getItem('time');
     if(timeData){
+      sessionStorage.removeItem('ticketId');
       this.selectedTime = JSON.parse(timeData);
     }
   }
@@ -69,6 +70,7 @@ export class SeatsComponent implements OnInit {
           });
           this.restService.createTicket(submitData).subscribe({
             next: (response)=> {
+              sessionStorage.setItem('ticketId', response[0].id)
               this.router.navigate(['/bill', this.movieId]);
             },
             error: ()=> {
