@@ -65,13 +65,18 @@ export class SeatsComponent implements OnInit {
         cancelButtonText: 'Huỷ bỏ',
       }).then((result) => {
         if (result.isConfirmed) {
-          let submitData = this.selectedSeats().map( seat =>{
-            return {
-              timeId: this.selectedTime.id,
-              chairId: seat.id,
-              accountId: "b92948ca-8a35-4717-8058-7e250a49f0c1"
+          const chairList = this.selectedSeats().map( seat =>{
+            return{
+              id: seat.id,
+              departmentId: seat.departmentId,
+              number: seat.number,
             }
           });
+          const submitData = {
+            timeId: this.selectedTime.id,
+            chairs: chairList,
+            accountId: "b92948ca-8a35-4717-8058-7e250a49f0c1"
+          };
           this.restService.createTicket(submitData).subscribe({
             next: (response)=> {
               sessionStorage.setItem('ticketId', response[0].id)
