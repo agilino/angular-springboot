@@ -28,7 +28,7 @@
                 <div class="type mt-1 fw-bold text-gray">2D Lồng tiếng</div>
                 <div class="showtimes mt-2 d-flex flex-row">
                     <a [class.overtime]="isOverTime(showtime.from) "*ngFor="let showtime of time.showtimes"
-                      class="btn btn-sm btn-showtime btn-outline-dark me-1 p-2"
+                      class="btn btn-sm btn-showtime btn-outline-dark me-1"
                       (click)="chooseTime(showtime)">
                       {{showtime.from}}
                     </a>

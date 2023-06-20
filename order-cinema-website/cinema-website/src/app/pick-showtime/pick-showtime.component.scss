@@ -53,16 +53,18 @@
 .showtimes{
   .overtime{
     pointer-events: none;
-    background-color: rgb(240, 240, 240) !important;
+    background-color: rgb(202, 202, 202) !important;
     border: 0px !important;
-    color: gray !important;
+    color: rgb(102, 102, 102) !important;
   }
 
   .btn-showtime{
+    padding: 8px 16px !important;
     color: #374151;
     border-radius: 32px;
     backdrop-filter: blur(20px);
     background-color: rgb(247, 247, 247);
+    border: 0px !important;
   }
 
   .btn-outline-dark{
