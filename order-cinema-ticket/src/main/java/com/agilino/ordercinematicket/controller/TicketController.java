@@ -3,6 +3,7 @@ package com.agilino.ordercinematicket.controller;
 
 import com.agilino.ordercinematicket.dto.ticket.TicketCreateDTO;
 import com.agilino.ordercinematicket.dto.ticket.TicketDTO;
+import com.agilino.ordercinematicket.model.Ticket;
 import com.agilino.ordercinematicket.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -28,8 +29,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<List<TicketDTO>> createTicket(@RequestBody List<TicketCreateDTO> tickets) {
-        var ticket = ticketService.createTicket(tickets);
-        return ResponseEntity.ok(ticket);
+    public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketCreateDTO ticket) {
+        return ResponseEntity.ok( ticketService.createTicket(ticket));
     }
 }

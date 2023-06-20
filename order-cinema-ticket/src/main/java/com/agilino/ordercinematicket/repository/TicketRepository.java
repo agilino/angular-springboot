@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface TicketRepository extends JpaRepository<Ticket, UUID>{
+public interface TicketRepository extends JpaRepository<Ticket, UUID> {
 
-
-    @Query(value = "SELECT t FROM Ticket t WHERE t.chair.id IN (:chairIds)")
-    public List<Ticket> findAllTicketByChairs(List<UUID> chairIds);
+    @Query("""
+            select t from Ticket t
+            where t.time.id = :timeId              
+                """)
+    List<Ticket> findAllByTime(UUID timeId);
 }

@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.mockito.Mockito.doReturn;
@@ -56,7 +57,7 @@ class TicketServiceTest {
         List<Ticket> tickets = new ArrayList<>();
         Ticket ticket = new Ticket();
         ticket.setId(UUID.randomUUID());
-        ticket.setChair(chair);
+        ticket.setChairs((Set.of(chair)));
         ticket.setCreatedOn(LocalDateTime.now());
         ticket.setTime(time);
         ticket.setAccount(account);

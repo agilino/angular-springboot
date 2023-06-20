@@ -31,9 +31,12 @@ public interface AppMapper {
     TimeDTO toDto(Time source);
 
     @Mapping(source = "timeId", target = "time", qualifiedByName = "mapTime")
-    @Mapping(source = "chairId", target = "chair", qualifiedByName = "mapChair")
+//    @Mapping(source = "chairId", target = "chair", qualifiedByName = "mapChair")
+    @Mapping(target = "chairs", ignore = true)
     @Mapping(source = "accountId", target = "account",  qualifiedByName = "mapAccount")
     Ticket toEntity(TicketCreateDTO source);
+
+    Chair toEntity(ChairDTO source);
 
     @Named("mapTime")
     Time mapTime(UUID value);
