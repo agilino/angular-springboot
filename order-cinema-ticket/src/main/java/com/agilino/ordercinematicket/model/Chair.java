@@ -25,10 +25,7 @@ public class Chair {
     @JoinColumn(name = "department_id", insertable = false, updatable = false)
     private Department department;
 
-//    @OneToOne(mappedBy = "chair")
-//    private Ticket ticket;
-
     @ManyToMany(mappedBy = "chairs")
-    Set<Ticket> tickets;
+    private Set<Ticket> tickets;
 
 }

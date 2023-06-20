@@ -2,7 +2,6 @@ package com.agilino.ordercinematicket.service;
 
 
 import com.agilino.ordercinematicket.controller.exception.NotFoundException;
-import com.agilino.ordercinematicket.dto.chair.ChairCreateDTO;
 import com.agilino.ordercinematicket.dto.chair.ChairDTO;
 import com.agilino.ordercinematicket.enums.ChairStatus;
 import com.agilino.ordercinematicket.mapper.AppMapper;
@@ -40,15 +39,15 @@ public class ChairService {
                 .flatMap(item -> item.getChairs().stream())
                 .collect(Collectors.toSet());
 
-        chairs.forEach(item -> {
-            ChairDTO dto = appMapper.toDto(item);
-            if (chairsBooked.contains(item.getId())) {
-                dto.setStatus(ChairStatus.BOOKED);
-            } else {
-                dto.setStatus(ChairStatus.FREE);
-            }
-        });
-
-        return new ArrayList<>();
+        return chairs.stream().map(appMapper::toDto).map(
+                item -> {
+                    if (chairsBooked.contains(item.getId())) {
+                        item.setStatus(ChairStatus.BOOKED);
+                    } else {
+                        item.setStatus(ChairStatus.FREE);
+                    }
+                    return item;
+                }
+        ).toList();
     }
 }

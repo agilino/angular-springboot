@@ -1,10 +1,7 @@
 package com.agilino.ordercinematicket.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -29,11 +26,8 @@ public class Ticket {
     @JoinColumn(name = "account_id", insertable = true, updatable = false)
     private Account account;
 
-//    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-////    @JoinColumn(name = "chair_id", insertable = true, updatable = false)
-////    private Chair chair;
-
     @ManyToMany
+    @EqualsAndHashCode.Exclude @ToString.Exclude
     @JoinTable(
             name = "ticket_chair",
             joinColumns = @JoinColumn(name = "chair_id"),

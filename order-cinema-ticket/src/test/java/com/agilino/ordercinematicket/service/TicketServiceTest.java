@@ -45,10 +45,6 @@ class TicketServiceTest {
         Assertions.assertEquals(1, expected.size());
     }
 
-    @Test
-    void createTicket() {
-    }
-
     private List<Ticket> buildTickets() {
         Chair chair = new Chair();
         Account account = new Account();
