@@ -25,7 +25,7 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     public List<TicketDTO> getTickets(UUID id) {
         if(Objects.isNull(id)) {
-            return ticketRepository.findAll().stream().findAny().stream().map(appMapper::toDto).toList();
+            return ticketRepository.findAll().stream().map(appMapper::toDto).toList();
         }
         return ticketRepository.findById(id).stream().map(appMapper::toDto).toList();
     }

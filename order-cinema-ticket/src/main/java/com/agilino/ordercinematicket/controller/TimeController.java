@@ -1,6 +1,5 @@
 package com.agilino.ordercinematicket.controller;
 
-import com.agilino.ordercinematicket.dto.MovieDTO;
 import com.agilino.ordercinematicket.dto.TimeDTO;
 import com.agilino.ordercinematicket.service.TimeService;
 import io.swagger.v3.oas.annotations.Operation;
