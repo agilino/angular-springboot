@@ -79,7 +79,7 @@ export class SeatsComponent implements OnInit {
           };
           this.restService.createTicket(submitData).subscribe({
             next: (response)=> {
-              sessionStorage.setItem('ticketId', response[0].id)
+              sessionStorage.setItem('ticketId', response.id)
               this.router.navigate(['/bill', this.movieId]);
             },
             error: ()=> {
