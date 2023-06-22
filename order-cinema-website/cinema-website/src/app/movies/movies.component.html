@@ -2,20 +2,41 @@
   <app-header></app-header>
   <div class="content">
     <div class="info">
-      <h5>{{ selectMovie.title }}</h5>
-      <h2>{{ selectMovie.title }}</h2>
-      <h5>{{ selectMovie.description }}</h5>
-      <button (click)="handleSelectMovie(selectMovie)" class="pick-ticket mt-auto me-auto btn btn-primary-outline">Đặt vé</button>
-    </div>
+      <!--
+      Tiêu đề phim đặt trong thẻ h2
+      Mô tả phim đặt trong thẻ h5
+      Lưu ý: (phim được chọn được lưu trong biến selectMovie)
+     -->
+     <h2>
+      <!-- Tiêu đề phim đặt ở đây -->
+    </h2>
+    <h5>
+      <!-- Mô tả phim đặt ở đây -->
+    </h5>
+    <button class="pick-ticket mt-auto me-auto btn btn-primary-outline">
+      <!--
+        Thêm sự kiện "click" cho button để gọi hàm handleSelectMovie() và truyền cho hàm tham số là phim được chọn (selectMovie)
+       -->
+      Đặt vé
+    </button>
 
-    <div class="slider">
-      <app-movie-card *ngFor="let item of movies"
-        [description]="item.description"
-        [title]="item.title"
-        [subTitle]="item.title"
-        [imageUrl]="item.imageUrl"
-        (click)="this.selectMovie = item">
-      </app-movie-card>
-    </div>
   </div>
+
+  <div class="slider">
+    <!--
+      Sử dụng ngFor bên trong component "app-movie-card" được khai báo bên dưới để lặp qua danh sách các phim vừa lấy được trong mảng movies.
+      - Truyền các thông tin như:
+      + Tiêu đề phim (title)
+      + Mô tả phim (description)
+      + Link ảnh phim (imageUrl)
+      Vào bên trong component "app-movie-card" thông qua data-binding ([dataName] = dataSource)
+      - Thêm sự kiện "click" để thực hiện công việc việc gán phim được chọn (Phim đang hiển thị trong "app-movie-card") vào biến selectMovie
+   -->
+
+    <app-movie-card>
+
+    </app-movie-card>
+
+  </div>
+</div>
 </div>

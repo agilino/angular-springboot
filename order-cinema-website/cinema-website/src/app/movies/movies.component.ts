@@ -16,15 +16,12 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadMovies();
+     // *** Các bước thực hiện để lấy danh sách các phim ***
+    // 1. Gọi API để lấy danh sách các bộ phim mà bạn vừa khai báo ở restService.
+    // 2. Gán kết quả trả về cho biến movies
+    // 3. Gán phần tử đầu tiên trong danh sách của biến movies cho biến selectMovie
   }
 
-  loadMovies() {
-    this.restService.getMovieList().subscribe((result) => {
-      this.movies = result as Movie[];
-      this.selectMovie = this.movies[0];
-    });
-  }
 
   handleSelectMovie(movie: Movie | undefined) {
     sessionStorage.setItem('movie', JSON.stringify(movie));
