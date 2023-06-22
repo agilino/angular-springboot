@@ -47,10 +47,13 @@ export class PickShowtimeComponent {
   }
 
   isOverTime(time: string): boolean {
+    let isOverDate = new Date(Date.parse("2021-08-01")) < this.selectedDay;
     let isOverMinutes = parseInt(time.split(":")[1]) < new Date().getMinutes();
     let isOverHours = parseInt(time.split(":")[0]) < new Date().getHours();
 
-    if(parseInt(time.split(":")[0]) === new Date().getHours()){
+    if(isOverDate){
+      return false;
+    } else if(parseInt(time.split(":")[0]) === new Date().getHours()){
       return isOverMinutes;
     } else {
       return isOverHours;
