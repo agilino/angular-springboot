@@ -31,8 +31,6 @@ public class Time {
     @JoinColumn(name = "department_id", insertable = false, updatable = false)
     private Department department;
 
-    //TODO check relationship of this one
-//    @OneToOne
-//    @JoinColumn(name = "time_id", insertable = false, updatable = false)
-//    private Time time;
+    @OneToOne(mappedBy = "time")
+    private Ticket ticket;
 }
