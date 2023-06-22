@@ -10,9 +10,10 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  getMovieList() {
-    return this.http.get<Movie[]>('/api/movies');
-  }
+
+  // *** Lấy danh sách tất cả các phim ***
+  // Khởi tạo hàm getMovieList() (Hoặc tên hàm bất kì) trả về một mảng có kiểu dữ liệu Movie
+  // để gọi API lấy danh sách tất cả các phim thông qua phương thức GET đến địa chỉ api (/api/movies)
 
   getMovieById(id: string) {
    return this.http.get<Movie[]>('/api/movies?id=' + id);
