@@ -26,22 +26,25 @@ public interface AppMapper {
     @Mapping(source = "department.id", target = "departmentId")
     ChairDTO toDto(Chair source);
 
+    @Mapping(source = "time.id", target = "timeId")
+    @Mapping(source = "account.id", target = "accountId")
     TicketDTO toDto(Ticket source);
 
     TimeDTO toDto(Time source);
 
     @Mapping(source = "timeId", target = "time", qualifiedByName = "mapTime")
-//    @Mapping(source = "chairId", target = "chair", qualifiedByName = "mapChair")
-    @Mapping(target = "chairs", ignore = true)
     @Mapping(source = "accountId", target = "account",  qualifiedByName = "mapAccount")
     Ticket toEntity(TicketCreateDTO source);
 
+
+    @Mapping(source = "departmentId", target = "department", qualifiedByName = "mapDepartment")
     Chair toEntity(ChairDTO source);
 
     @Named("mapTime")
     Time mapTime(UUID value);
     @Named("mapAccount")
     Account mapAccount(UUID value);
-    @Named("mapChair")
-    Chair mapChair(UUID value);
+
+    @Named("mapDepartment")
+    Department mapDepartment(UUID value);
 }
