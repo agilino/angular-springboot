@@ -17,20 +17,21 @@ public class Ticket {
     @Id
     @GeneratedValue
     private UUID id;
+
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "time_id", insertable = false, updatable = false)
+    @JoinColumn(name = "time_id")
     private Time time;
+
     @Column(name = "created_on")
     private LocalDateTime createdOn;
     @ManyToOne
-    @JoinColumn(name = "account_id", insertable = false, updatable = false)
+    @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @EqualsAndHashCode.Exclude @ToString.Exclude
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.MERGE})
     @JoinTable(
             name = "ticket_chair",
-            joinColumns = {@JoinColumn(name = "ticket_id", referencedColumnName = "id")},
-            inverseJoinColumns = @JoinColumn(name = "chair_id" ,referencedColumnName = "id"))
+            joinColumns = {@JoinColumn(name = "ticket_id")},
+            inverseJoinColumns = @JoinColumn(name = "chair_id"))
     Set<Chair> chairs;
 }

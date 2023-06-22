@@ -41,25 +41,20 @@ create table chair(
     constraint chair_department_fk foreign key (department_id) references department(id)
 );
 
-create table ticket_chair(
-    id          uuid not null,
-    chair_id    uuid not null,
-    time_id     uuid not null,
-    constraint ticket_chair_pk primary key (id),
-    constraint ticket_chair_chair_fk foreign key (chair_id) references chair(id),
-    constraint ticket_chair_time_fk foreign key (time_id) references time(id),
-    constraint chair_id_time_id_key unique (chair_id, time_id)
+create table ticket(
+       id        uuid not null,
+       time_id   uuid not null,
+       account_id   uuid not null,
+       created_on timestamp null,
+       constraint ticket_pk primary key (id),
+       constraint ticket_time_fk foreign key (time_id) references time(id),
+       constraint ticket_account_fk foreign key (account_id) references "account"(id)
 );
 
-create table ticket(
-    id        uuid not null,
-    time_id   uuid not null,
-    chair_id  uuid not null,
-    account_id   uuid not null,
-    created_on timestamp null,
-    constraint ticket_pk primary key (id),
-    constraint ticket_time_fk foreign key (time_id) references time(id),
-    constraint ticket_chair_fk foreign key (chair_id) references chair(id),
-    constraint ticket_account_fk foreign key (account_id) references "account"(id),
-    constraint ticket_time_id_chair_id_account_id_key unique (time_id, chair_id, account_id)
+create table ticket_chair (
+    chair_id    uuid not null,
+    ticket_id     uuid not null,
+    constraint ticket_chair_pk primary key (chair_id, ticket_id),
+    constraint ticket_chair_chair_fk foreign key (chair_id) references chair(id),
+    constraint ticket_chair_ticket_fk foreign key (ticket_id) references ticket(id)
 );

@@ -53,8 +53,12 @@ public class TicketService {
                 .toList();
         savedTicket.setChairs(new HashSet<>(chairs));
         savedTicket.setCreatedOn(LocalDateTime.now());
-        Time referenceById = timeRepository.getReferenceById(ticketCreate.getTimeId());
-        savedTicket.setTime(referenceById);
+//        Time referenceById = timeRepository.getReferenceById(ticketCreate.getTimeId());
+//        savedTicket.setTime(referenceById);
+        Time time = timeRepository.findById(ticketCreate.getTimeId()).get();
+        Time time2 = new Time();
+        time2.setId(ticketCreate.getTimeId());
+        savedTicket.setTime(time2);
         Ticket save = ticketRepository.save(savedTicket);
         TicketDTO ticketDTO = appMapper.toDto(save);
         return ticketDTO;
