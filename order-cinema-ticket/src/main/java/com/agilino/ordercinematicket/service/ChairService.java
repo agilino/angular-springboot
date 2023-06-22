@@ -25,29 +25,19 @@ public class ChairService {
 
     private final TicketRepository ticketRepository;
 
-    public ChairDTO getChair(UUID chairId) {
-        return chairRepository.findById(chairId).map(appMapper::toDto).orElseThrow(NotFoundException::new);
-    }
-
     public List<ChairDTO> getChairs(UUID departmentId, UUID timeId) {
         if (departmentId == null || timeId == null) {
             return new ArrayList<>(); // Return empty list if either parameter is null
         }
 
-        List<Chair> chairs = chairRepository.findByDepartmentId(departmentId, timeId);
-        Set<Chair> chairsBooked = ticketRepository.findAllByTime(timeId).stream()
+        Set<UUID> chairsBooked = ticketRepository.findAllByTime(timeId).stream()
                 .flatMap(item -> item.getChairs().stream())
+                .map(Chair::getId)
                 .collect(Collectors.toSet());
 
-        return chairs.stream().map(appMapper::toDto).map(
-                item -> {
-                    if (chairsBooked.contains(item.getId())) {
-                        item.setStatus(ChairStatus.BOOKED);
-                    } else {
-                        item.setStatus(ChairStatus.FREE);
-                    }
-                    return item;
-                }
-        ).toList();
+        return chairRepository.findByDepartmentId(departmentId, timeId).stream()
+                .map(appMapper::toDto)
+                .peek(item -> item.setStatus(chairsBooked.contains(item.getId()) ? ChairStatus.BOOKED : ChairStatus.FREE))
+                .toList();
     }
 }
