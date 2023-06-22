@@ -13,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "chair")
+@Builder
 public class Chair {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
