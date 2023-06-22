@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -31,6 +33,6 @@ public class Time {
     @JoinColumn(name = "department_id", insertable = false, updatable = false)
     private Department department;
 
-    @OneToOne(mappedBy = "time")
-    private Ticket ticket;
+    @OneToMany(mappedBy = "time")
+    private Set<Ticket> tickets;
 }

@@ -18,7 +18,7 @@ public class Ticket {
     @GeneratedValue
     private UUID id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "time_id")
     private Time time;
 

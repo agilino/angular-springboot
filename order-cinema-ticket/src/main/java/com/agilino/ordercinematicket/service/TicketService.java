@@ -1,5 +1,6 @@
 package com.agilino.ordercinematicket.service;
 
+import com.agilino.ordercinematicket.controller.exception.ConflictDataException;
 import com.agilino.ordercinematicket.controller.exception.NotFoundException;
 import com.agilino.ordercinematicket.dto.chair.ChairDTO;
 import com.agilino.ordercinematicket.dto.ticket.TicketCreateDTO;
@@ -14,10 +15,12 @@ import com.agilino.ordercinematicket.repository.TimeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.io.NotActiveException;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,39 +41,22 @@ public class TicketService {
 
     @Transactional
     public TicketDTO createTicket(TicketCreateDTO ticketCreate) {
-        ticketCreate.getChairs().forEach(item -> {
-            try {
-                validateChair(item, ticketCreate.getTimeId());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-
+        validateChair(ticketCreate.getChairs(), ticketCreate.getTimeId());
         Ticket savedTicket = appMapper.toEntity(ticketCreate);
-        List<Chair> chairs = savedTicket.getChairs().
-                stream()
-                .map(chair -> chairRepository.getReferenceById(chair.getId()))
-                .toList();
-        savedTicket.setChairs(new HashSet<>(chairs));
         savedTicket.setCreatedOn(LocalDateTime.now());
-//        Time referenceById = timeRepository.getReferenceById(ticketCreate.getTimeId());
-//        savedTicket.setTime(referenceById);
-        Time time = timeRepository.findById(ticketCreate.getTimeId()).get();
-        Time time2 = new Time();
-        time2.setId(ticketCreate.getTimeId());
-        savedTicket.setTime(time2);
         Ticket save = ticketRepository.save(savedTicket);
-        TicketDTO ticketDTO = appMapper.toDto(save);
-        return ticketDTO;
+        return appMapper.toDto(save);
     }
 
-    private void validateChair(ChairDTO chairDTO, UUID timeId) throws Exception {
-        Optional ticketBooked = ticketRepository.findAllByTime(timeId).stream()
-                .flatMap(item -> item.getChairs().stream())
-                .filter(item -> item.getId().equals(chairDTO.getId()))
-                .findFirst();
-        if (ticketBooked.isPresent()) {
-            throw new Exception("Chair is booked");
+    private void validateChair(List<ChairDTO> chairDTOS, UUID timeId) {
+        Set<UUID> chairDTOIds = chairDTOS.stream().map(ChairDTO::getId).collect(Collectors.toSet());
+        Set<UUID> chairIds = ticketRepository.findAllByTime(timeId).stream()
+                .map(Ticket::getChairs)
+                .flatMap(Collection::stream)
+                .map(Chair::getId).collect(Collectors.toSet());
+
+        if (CollectionUtils.containsAny(chairDTOIds, chairIds)) {
+            throw new ConflictDataException("Chair is booked");
         }
     }
 }

@@ -17,6 +17,6 @@ public class ReferenceMapper {
 
     @ObjectFactory
     public <T> T map(@NonNull final UUID id, @TargetType Class<T> type) {
-        return entityManager.getReference(type, id);
+        return entityManager.find(type, id);
     }
 }
